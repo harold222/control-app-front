@@ -1,27 +1,25 @@
-# Front
+# Control FrontEnd
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+El frontEnd estara construido con el Framework para javascript Angular en su ultima version (v.13)
+[![Angular](https://abirghoudi.com/wp-content/uploads/2020/06/Angular_full_color_logo.svg.png)](https://angular.io/)
 
-## Development server
+## Probar proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Es necesario tener instalado NodeJs
+- Editor de codigo usado [https://code.visualstudio.com/]
+- Instalar el cli de angular desde cmd - ``` npm install -g @angular/cli ```
+- Clonar repositorio localmente
+- Instalar dependencias del proyecto: Desde cmd en la carpeta del proyecto usar comando ``` npm install ```
+- Para ejecutar proyecto usar ``` npm start ``` o ``` ng serve ```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## A tener en cuenta
+- Se eliminaron los archivos de pruebas
+- Para realizar cambios es necesario crear una rama nueva
+- No hacer push a la rama master
+- Realizar pull request solo a rama master
+- Las actividades para hacer se encuentran en [https://github.com/orgs/control-app/projects/1]
+- Se hace deploy en heroku con cada cambio en rama master: ```  ```
+- Se utiliza scss en vez de css
+- En local el front se muestra en ``` http://localhost:4200 ```
+- Se trabaja con Typescript por defecto
+- Los cambios a hacer se realizan dentro de la ruta ```  src/app ```
