@@ -10,7 +10,7 @@ El frontEnd estara construido con el Framework para javascript Angular en su ult
 - Instalar el cli de angular desde cmd - ``` npm install -g @angular/cli ```
 - Clonar repositorio localmente
 - Instalar dependencias del proyecto: Desde cmd en la carpeta del proyecto usar comando ``` npm install ```
-- Para ejecutar proyecto usar ``` npm start ``` o ``` ng serve ```
+- Para ejecutar proyecto usar ``` npm start:local ``` o ``` ng serve ```
 
 ## A tener en cuenta
 - Se eliminaron los archivos de pruebas
