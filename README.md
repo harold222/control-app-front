@@ -18,7 +18,7 @@ El frontEnd estara construido con el Framework para javascript Angular en su ult
 - No hacer push a la rama master
 - Realizar pull request solo a rama master
 - Las actividades para hacer se encuentran en [https://github.com/orgs/control-app/projects/1]
-- Se hace deploy en heroku con cada cambio en rama master: ```  ```
+- Se hace deploy en heroku con cada cambio en rama master: ``` controlfrontapp.herokuapp.com ```
 - Se utiliza scss en vez de css
 - En local el front se muestra en ``` http://localhost:4200 ```
 - Se trabaja con Typescript por defecto
