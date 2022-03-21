@@ -9,12 +9,14 @@ import {
 import { Injectable } from "@angular/core";
 import { makeStateKey, StateKey, TransferState } from "@angular/platform-browser";
 import { catchError, delay, Observable, of, race, tap } from 'rxjs';
+import { TokenService } from '../shared/services/token/token.service';
 
 @Injectable()
 export class InterceptorToken implements HttpInterceptor {
 
     constructor(
-        private transferState: TransferState
+        private transferState: TransferState,
+        private tokenService: TokenService
     ) {
     }
 
@@ -24,11 +26,9 @@ export class InterceptorToken implements HttpInterceptor {
     // }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
+        request = this.tokenService.addTokenToRequest(request)
+
         console.log('peticion: ', request.url)
-        request = request.clone({
-            headers: request.headers.append("xxxtokenxxx", "tokenlocalstorage"),
-            url: request.url
-        })
 
         if (request.method !== 'GET') {
             return next.handle(request)

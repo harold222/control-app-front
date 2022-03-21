@@ -28,7 +28,7 @@ export class TokenService {
 
     public addTokenToRequest = (request: HttpRequest<any>): HttpRequest<any> =>
         request.clone({
-            headers: request.headers.append('Authorization', `Bearer ${this.getToken()}`),
+            headers: request.headers.append('xxxtokenxxx', this.getToken() || ''),
             url: request.url
         });
 

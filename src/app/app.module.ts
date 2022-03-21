@@ -30,26 +30,12 @@ import { reducers } from './store/app.reducer';
 //  interceptors
 import { InterceptorToken } from './interceptors/interceptor-token';
 
-const routes: Routes = [
-  {
-    path: '',
-    // loadChildren: () => import().then((p: { PublicModule }) => p.PublicModule).catch()
-  },
-  {
-    path: '',
-    // loadChildren: () => import().then((p: { AdminModule }) => p.AdminModule).catch()
-  },
-  {
-    path: '**',
-    redirectTo: 'home',
-  },
-]
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -62,16 +48,7 @@ const routes: Routes = [
       registrationStrategy: 'registerWhenStable:30000'
     }),
     NgxLoadingModule.forRoot({}),
-    RouterModule.forRoot(routes, {
-      enableTracing: false,
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled',
-      onSameUrlNavigation: 'reload',
-      paramsInheritanceStrategy: 'always',
-      initialNavigation: 'enabled',
-      relativeLinkResolution: 'legacy'
-    }),
-    StorageModule.forRoot(reducers),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
     ]),
     StorageModule.forRoot({ 
