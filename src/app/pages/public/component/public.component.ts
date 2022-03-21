@@ -4,8 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-public',
   templateUrl: './public.component.html',
 })
-export class PublicComponent {
-  constructor() {
-    console.log('hola')
-  }
-}
+export class PublicComponent {}

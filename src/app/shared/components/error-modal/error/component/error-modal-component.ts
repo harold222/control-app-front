@@ -28,10 +28,10 @@ export class ErrorModalComponent {
   }
 
   @Input() set selectModal(modal: boolean | null) {
-    if (modal) this.showModal();
+    if (modal != null) this.showModal();
   }
 
-  @ViewChild(ModalDirective, {static: false}) modal: ModalDirective;
+  @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
 
   constructor(private tokenService: TokenService) {}
 

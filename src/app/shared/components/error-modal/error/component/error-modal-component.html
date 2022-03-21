@@ -1,19 +1,19 @@
 <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" (onHidden)="closeModal()">
     <div class="modal-dialog modal-md modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-error">
 
-        <div class="modal-content-upperheader">
+        <div class="modal-error-header">
             <fa-icon [icon]="iconTimes"></fa-icon>
         </div>
 
-        <div class="modal-body">
-            <h4 class="">
+        <div class="modal-body modal-error-error">
+            <h4 class="modal-error-error-title">
                 ¡Algo ha ocurrido!
             </h4>
 
             <hr>
 
-            <div *ngFor="let error of errorList" class="">
+            <div *ngFor="let error of errorList" class="modal-error-error-list">
                 <ng-container [ngSwitch]="error">
                     <span *ngSwitchCase="1000 || 1001">
                         Se ha acabado su sesion.
@@ -22,19 +22,19 @@
                         Ha ocurrido un error
                     </span>
                 </ng-container>
-              </div>
-          </div>
+            </div>
+        </div>
 
-          <div class="">
-                <button type="button" (click)="closeModal()" *ngIf="!redirectTologIn"
-                  class="">
-                    Cerrar
-                </button>
-                <button *ngIf="redirectTologIn" [routerLink]="'login'" (click)="goLogin()" type="button"
-                  class="">
-                  Volver a ingresar
-                </button>
-          </div>
+        <div class="modal-error-error-actions">
+            <button type="button" (click)="closeModal()" *ngIf="!redirectTologIn"
+                class="btn btn-danger">
+                Cerrar
+            </button>
+            <button *ngIf="redirectTologIn" [routerLink]="'login'" (click)="goLogin()" type="button"
+                class="btn btn-danger">
+                Volver a ingresar
+            </button>
+        </div>
 
       </div>
     </div>
