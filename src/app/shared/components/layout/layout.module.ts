@@ -18,9 +18,8 @@ import { HeaderComponent } from './header/component/header-component.component';
         HeaderComponent
     ],
     exports: [
-        HeaderContainerComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderContainerComponent
     ],
     imports: [
         CommonModule,

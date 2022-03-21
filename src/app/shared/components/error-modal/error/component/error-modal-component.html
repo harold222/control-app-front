@@ -1,0 +1,41 @@
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" (onHidden)="closeModal()">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-content-upperheader">
+            <fa-icon [icon]="iconTimes"></fa-icon>
+        </div>
+
+        <div class="modal-body">
+            <h4 class="">
+                ¡Algo ha ocurrido!
+            </h4>
+
+            <hr>
+
+            <div *ngFor="let error of errorList" class="">
+                <ng-container [ngSwitch]="error">
+                    <span *ngSwitchCase="1000 || 1001">
+                        Se ha acabado su sesion.
+                    </span>
+                    <span *ngSwitchDefault>
+                        Ha ocurrido un error
+                    </span>
+                </ng-container>
+              </div>
+          </div>
+
+          <div class="">
+                <button type="button" (click)="closeModal()" *ngIf="!redirectTologIn"
+                  class="">
+                    Cerrar
+                </button>
+                <button *ngIf="redirectTologIn" [routerLink]="'login'" (click)="goLogin()" type="button"
+                  class="">
+                  Volver a ingresar
+                </button>
+          </div>
+
+      </div>
+    </div>
+</div>

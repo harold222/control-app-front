@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PublicModule } from './pages/public/public.module';
 
 const routes: Routes = [
   {
     path: '',
-    // loadChildren: () => import().then((p: { PublicModule }) => p.PublicModule).catch()
+    loadChildren: () => import('./pages/public/public.module')
+      .then((m: { PublicModule: PublicModule }) => m.PublicModule)
   },
-  {
-    path: '',
-    // loadChildren: () => import().then((p: { AdminModule }) => p.AdminModule).catch()
-  },
+  // {
+  //   path: '',
+  //   // loadChildren: () => import().then((p: { AdminModule }) => p.AdminModule).catch()
+  // },
   {
     path: '**',
     redirectTo: '',

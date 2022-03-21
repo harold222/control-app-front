@@ -9,18 +9,23 @@ import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ErrorModalContainer } from './error/container/error-modal-container.component';
+import { ErrorModalComponent } from './error/component/error-modal-component';
 
 @NgModule({
-    declarations: [
-    ],
-    imports:      [
-        CommonModule,
-        RouterModule,
-        FontAwesomeModule,
-        ModalModule.forRoot()
-    ],
-    exports: [
-    ]
+  declarations: [
+    ErrorModalContainer,
+    ErrorModalComponent
+  ],
+  imports:      [
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule,
+    ModalModule.forRoot()
+  ],
+  exports: [
+    ErrorModalContainer
+  ]
 })
 export class ErrorModalsModule {
 }
