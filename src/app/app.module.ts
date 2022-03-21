@@ -29,6 +29,7 @@ import { reducers } from './store/app.reducer';
 
 //  interceptors
 import { InterceptorToken } from './interceptors/interceptor-token';
+import { LoginEffects } from './pages/public/login/store/effect';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { InterceptorToken } from './interceptors/interceptor-token';
     NgxLoadingModule.forRoot({}),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
+      LoginEffects
     ]),
     StorageModule.forRoot({ 
       IDBDBName: 'ControlDataBase', 
