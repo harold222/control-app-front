@@ -10,20 +10,22 @@ import { Injectable } from "@angular/core";
 import { makeStateKey, StateKey, TransferState } from "@angular/platform-browser";
 import { catchError, delay, Observable, of, race, tap } from 'rxjs';
 import { TokenService } from '../shared/services/token/token.service';
+import { ErrorModalService } from '../shared/components/error-modal/service/error-modal.service';
 
 @Injectable()
 export class InterceptorToken implements HttpInterceptor {
 
     constructor(
         private transferState: TransferState,
-        private tokenService: TokenService
+        private tokenService: TokenService,
+        private ErrorModalService: ErrorModalService
     ) {
     }
 
-    // public createError(codeError: number): void {
-    //     this.errorModalStoreService.setModal(true);
-    //     this.errorModalStoreService.setError(codeError);
-    // }
+    public createError(codeError: number): void {
+        this.ErrorModalService.setModal(true);
+        this.ErrorModalService.setError(codeError);
+    }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
         request = this.tokenService.addTokenToRequest(request)
@@ -35,12 +37,9 @@ export class InterceptorToken implements HttpInterceptor {
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         if (request.url.indexOf('.json') === -1) {
-                            if (error && error.error) {
-                                console.log('genero un error: ', error)
-                            }
-                            // (error && error.error) ?
-                            //     this.createError(rejection.error.statusCode) :
-                            //     this.createError(-1);
+                            (error && error.error) ?
+                                this.createError(error.error.statusCode) :
+                                this.createError(-1);
                         }
                         return of(error);
                     }),
@@ -57,12 +56,9 @@ export class InterceptorToken implements HttpInterceptor {
                 }),
                 catchError((error: HttpErrorResponse) => {
                     if (request.url.indexOf('.json') === -1) {
-                        if (error && error.error) {
-                            console.log('genero un error: ', error)
-                        }
-                        // (error && error.error) ?
-                        //     this.createError(error.error.statusCode) :
-                        //     this.createError(-1);
+                        (error && error.error) ?
+                            this.createError(error.error.statusCode) :
+                            this.createError(-1);
                     }
                     return of(error);
                 })
