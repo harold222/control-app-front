@@ -27,5 +27,4 @@ import { ErrorModalComponent } from './error/component/error-modal-component';
     ErrorModalContainer
   ]
 })
-export class ErrorModalsModule {
-}
+export class ErrorModalsModule {  }
