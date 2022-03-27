@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
 }
 
 a, a:hover, body {
@@ -49,5 +50,5 @@ h6 {
     --tertiary: #903749;
     --complementary: #53354a;
     --boder: #DEE2E6;
-    --disabled: #6e6e6e
+    --disabled: #6e6e6e;
 }
