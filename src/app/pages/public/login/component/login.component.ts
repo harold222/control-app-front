@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginStoreService } from '../service/login.store.service';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,17 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  @Input() public loading: boolean | null;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginStoreService: LoginStoreService
+  ) {
     this.createForm();
   }
 
   public ngOnInit(): void {
+    
   }
 
   public createForm = (): void => {
@@ -40,10 +47,9 @@ export class LoginComponent implements OnInit {
     this.form.get(field)?.invalid && this.form.get(field)?.touched;
 
   public sendForm = (): void => {
-    console.log(this.form)
-    if (this.form.valid) {
-      this.form.get('email')?.value;
-      this.form.get('password')?.value;
+    if (this.form.valid && !this.loading) {
+      this.loginStoreService.setLoading(true)
+      this.loginStoreService.generateLogin(this.form.get('email')?.value, this.form.get('password')?.value)
     } else 
       Object.values(this.form.controls).forEach(control => control.markAsTouched())
   }

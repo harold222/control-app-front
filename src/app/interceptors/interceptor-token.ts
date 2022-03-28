@@ -28,9 +28,9 @@ export class InterceptorToken implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
+        console.log('peticion: ', request.url)
         request = this.tokenService.addTokenToRequest(request)
 
-        console.log('peticion: ', request.url)
 
         if (request.method !== 'GET') {
             return next.handle(request)

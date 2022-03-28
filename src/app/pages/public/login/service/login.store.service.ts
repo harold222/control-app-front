@@ -12,7 +12,14 @@ export class LoginStoreService {
 
     constructor(private store: Store<InterfaceLoginState>) {}
 
-    public setLoading = (loading: boolean): void => this.store.dispatch(actions.setLoading({ loading }));
+    public setLoading = (loading: boolean): void =>
+        this.store.dispatch(actions.setLoading({ loading }));
 
-    public selectLoading = (): Observable<boolean> => this.store.select(selectors.selectLoading);
+    public selectLoading = (): Observable<boolean> =>
+        this.store.select(selectors.selectLoading);
+
+    public generateLogin = (email: string, pass: string) => {
+        this.store.dispatch(actions.generateLogin({ email, pass }))
+    }
+    
 }

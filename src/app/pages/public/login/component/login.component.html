@@ -2,32 +2,43 @@
     <form class="login-form" autocomplete="off"
         [formGroup]="form" (ngSubmit)="sendForm()">
         <div class="header">
-            <h1>
-                Control App
-            </h1>
+            <h1> Control App </h1>
             <hr>
         </div>
+
+        <small *ngIf="getFieldIsValid('email')" class="text-danger">
+            Correo invalido
+        </small>
         <input
             type="text"
             placeholder="Ingrese el correo"
             formControlName="email"
             class="form-control"
             [class.is-invalid]="getFieldIsValid('email')"/>
-            <small *ngIf="getFieldIsValid('email')" class="text-danger">
-                Correo invalido
-            </small>
+            
 
+        <small *ngIf="getFieldIsValid('password')" class="text-danger">
+            Almenos 3 caracteres
+        </small>
         <input
             type="password"
             placeholder="Ingrese la contraseña"
             class="form-control"
             formControlName="password"
             [class.is-invalid]="getFieldIsValid('password')"/>
-            <small *ngIf="getFieldIsValid('password')" class="text-danger">
-                Almenos 3 caracteres
-            </small>
-        <button class="btn btn-block btn-success">
+            
+        <button class="btn btn-block btn-success" [disabled]="loading">
             Ingresar
         </button>
+
+        <ng-container *ngIf="loading">
+            <div class="login-loading">
+                <h4 class="login-loading-title">
+                    ¡Cargando!
+                </h4>
+                <div class="login-loading-icon"></div>
+            </div>
+        </ng-container>
+        
     </form>
 </div>

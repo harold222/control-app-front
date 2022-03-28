@@ -1,4 +1,7 @@
-export const environment = {
+import { EnvironmentInterface } from './environmentInterface';
+
+export const environment: EnvironmentInterface = {
   production: true,
-  BACK_END: 'https://controlbackapp.herokuapp.com/api/'
+  BACK_END: 'https://controlbackapp.herokuapp.com/api/',
+  environment: 'production'
 };
