@@ -1,13 +1,31 @@
 <div class="login">
-    <form class="login-form">
+    <form class="login-form" autocomplete="off"
+        [formGroup]="form" (ngSubmit)="sendForm()">
         <div class="header">
             <h1>
                 Control App
             </h1>
             <hr>
         </div>
-        <input type="text" placeholder="username"/>
-        <input type="password" placeholder="password"/>
+        <input
+            type="text"
+            placeholder="Ingrese el correo"
+            formControlName="email"
+            class="form-control"
+            [class.is-invalid]="getFieldIsValid('email')"/>
+            <small *ngIf="getFieldIsValid('email')" class="text-danger">
+                Correo invalido
+            </small>
+
+        <input
+            type="password"
+            placeholder="Ingrese la contraseña"
+            class="form-control"
+            formControlName="password"
+            [class.is-invalid]="getFieldIsValid('password')"/>
+            <small *ngIf="getFieldIsValid('password')" class="text-danger">
+                Almenos 3 caracteres
+            </small>
         <button class="btn btn-block btn-success">
             Ingresar
         </button>
