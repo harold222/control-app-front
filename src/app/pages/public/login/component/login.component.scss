@@ -14,6 +14,9 @@
         margin: 0 auto;
         padding: 20px;
         text-align: center;
+        h1 {
+            text-transform: uppercase;
+        }
         input {
             outline: 0;
             background: #f2f2f2;
@@ -37,10 +40,8 @@
 
 @include tablet {
     .login {
-        max-width: 400px;
-        height: auto;
+        background-color: var(--boder);
         &-form {
-            max-width: 400px;
             padding: 45px;
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
         }
