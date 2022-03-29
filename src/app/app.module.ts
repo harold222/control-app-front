@@ -61,7 +61,9 @@ import { LoginEffects } from './pages/public/login/store/effect';
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: InterceptorToken, multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorToken,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]
