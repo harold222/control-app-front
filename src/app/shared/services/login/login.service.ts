@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { IgenerateLoginRequest } from './model/generateLogin/IgenerateLoginRequest';
+import { IgenerateLoginResponse } from './model/generateLogin/IgenerateLoginResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public generateLogin(data: any): Observable<any> {
+  public generateLogin(data: IgenerateLoginRequest): Observable<IgenerateLoginResponse> {
     return this.http.post(
       `${this.url}login`, data
     )

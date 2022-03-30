@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
 
   public sendForm = (): void => {
     if (this.form.valid && !this.loading) {
-      this.loginStoreService.setLoading(true)
       this.loginStoreService.generateLogin(this.form.get('email')?.value, this.form.get('password')?.value)
     } else 
       Object.values(this.form.controls).forEach(control => control.markAsTouched())
