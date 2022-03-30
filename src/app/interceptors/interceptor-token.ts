@@ -12,9 +12,7 @@ import { catchError, delay, Observable, of, race, tap } from 'rxjs';
 import { TokenService } from '../shared/services/token/token.service';
 import { ErrorModalService } from '../shared/components/error-modal/service/error-modal.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class InterceptorToken implements HttpInterceptor {
 
     constructor(

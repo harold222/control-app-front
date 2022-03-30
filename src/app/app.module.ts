@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
 // loading component by router and http
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -37,7 +37,8 @@ import { LoginEffects } from './pages/public/login/store/effect';
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp'}),
+    BrowserTransferStateModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
