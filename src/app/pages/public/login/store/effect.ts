@@ -28,7 +28,7 @@ export class LoginEffects {
                     )
             ),
             tap((response: IgenerateLoginResponse) => {
-                if (response.status && response.token) {
+                if (response.status) {
                     const atob = window.atob(response.token.split('.')[1]);
                     if (atob) {
                         localStorage.setItem('token', response.token);
@@ -37,8 +37,11 @@ export class LoginEffects {
                         this.loginStoreService.setLoading(false);
                         this.router.navigate(['main']);
                     }
-                } else
+                } else {
+                    this.informationModalService.setInformation('Error al inicair sesion', response.message);
+                    this.informationModalService.setModal(true);
                     this.loginStoreService.setLoading(false);
+                }
             })
         ), { dispatch: false }
     );

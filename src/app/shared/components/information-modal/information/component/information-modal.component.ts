@@ -22,7 +22,13 @@ export class InformationModalComponent {
   constructor(private informationModalService: InformationModalService) { }
 
   public showModal() {
-    this.modal && this.modal.show();
+    if (this.modal) {
+      this.modal.show();
+    } else {
+      setTimeout(() => {
+        this.modal.show();
+      }, 350);
+    }
   }
 
   public closeModal(): void {

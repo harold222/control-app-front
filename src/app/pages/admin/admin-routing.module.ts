@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin/admin.component';
 import { PanelContainer } from './panel/container/panel-container.component';
+import { ExistsessionGuard } from '../../guards/existsession.guard';
 
 const routes: Routes = [
     {
@@ -10,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                canActivate: [],
+                canActivate: [ExistsessionGuard],
                 component: PanelContainer
             }
         ]
