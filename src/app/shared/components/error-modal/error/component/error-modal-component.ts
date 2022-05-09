@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { TokenService } from '../../../../services/token/token.service';
+import { ErrorModalService } from '../../service/error-modal.service';
 
 @Component({
   selector: 'app-error-modal-component',
@@ -28,12 +29,12 @@ export class ErrorModalComponent {
   }
 
   @Input() set selectModal(modal: boolean | null) {
-    if (modal != null) this.showModal();
+    if (modal != null && modal === true) this.showModal();
   }
 
   @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private ErrorModalService: ErrorModalService) {}
 
   public showModal() {
     this.modal && this.modal.show();

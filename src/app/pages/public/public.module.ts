@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PublicRoutingModule } from './public-routing.module';
 import { CommonModule } from '@angular/common';
 import { PublicComponent } from './component/public.component';
+import { InformationModalsModule } from '../../shared/components/information-modal/information-modal.module';
 
 @NgModule({
     declarations: [
@@ -9,7 +10,8 @@ import { PublicComponent } from './component/public.component';
     ],
     imports: [
         PublicRoutingModule,
-        CommonModule
+        CommonModule,
+        InformationModalsModule
     ],
     providers: [
     ],

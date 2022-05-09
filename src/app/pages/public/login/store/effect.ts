@@ -6,6 +6,7 @@ import { LoginService } from '../../../../shared/services/login/login.service';
 import { GENERATE_LOADING, setLogin } from './action';
 import { LoginStoreService } from '../service/login.store.service';
 import { IgenerateLoginResponse } from '../../../../shared/services/login/model/generateLogin/IgenerateLoginResponse';
+import { InformationModalService } from '../../../../shared/components/information-modal/service/information-modal.service';
 
 @Injectable()
 export class LoginEffects {
@@ -18,7 +19,8 @@ export class LoginEffects {
                 this.loginService.generateLogin({ email: action.email, password: action.pass })
                     .pipe(
                         catchError(error => {
-                            // CREAR MODAL INFORMACION o toast DEL ERROR QUE SE GENERO error.error.errors.msg
+                            this.informationModalService.setInformation('Error al iniciar sesion', error.error.errors[0].msg);
+                            this.informationModalService.setModal(true);
                             this.loginStoreService.setLoading(false);
                             return throwError(error);
                         })
@@ -35,6 +37,7 @@ export class LoginEffects {
     constructor(
         private actions$: Actions,
         private loginService: LoginService,
-        private loginStoreService: LoginStoreService
+        private loginStoreService: LoginStoreService,
+        private informationModalService: InformationModalService
     ) {}
 }

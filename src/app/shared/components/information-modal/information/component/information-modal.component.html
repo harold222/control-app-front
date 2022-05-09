@@ -1,0 +1,26 @@
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" (onHidden)="closeModal()">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+      <div class="modal-error">
+
+        <div class="modal-body modal-error-error">
+            <h4 class="modal-error-error-title">
+                {{ information?.title }}
+            </h4>
+
+            <hr>
+
+            <p>
+                {{ information?.message }}
+            </p>
+        </div>
+
+        <div class="modal-error-error-actions">
+            <button type="button" (click)="closeModal()"
+                class="btn btn-success">
+                Cerrar
+            </button>
+        </div>
+
+      </div>
+    </div>
+</div>
