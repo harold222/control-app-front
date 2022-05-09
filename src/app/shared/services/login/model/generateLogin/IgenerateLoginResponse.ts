@@ -1,3 +1,5 @@
 export interface IgenerateLoginResponse {
-    ok?: boolean;
+    message: string;
+    status: boolean;
+    token: string;
 }

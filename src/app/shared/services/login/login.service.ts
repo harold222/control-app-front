@@ -15,7 +15,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public generateLogin(data: IgenerateLoginRequest): Observable<IgenerateLoginResponse> {
-    return this.http.post(
+    return this.http.post<IgenerateLoginResponse>(
       `${this.url}login`, data
     )
   }

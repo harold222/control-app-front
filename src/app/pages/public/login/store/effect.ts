@@ -26,12 +26,20 @@ export class LoginEffects {
                         })
                     )
             ),
-            map((response: IgenerateLoginResponse) => {
-                console.log('response: ', response)
-                this.loginStoreService.setLoading(false);
-                return setLogin()
-            }),
-        )
+            tap((response: IgenerateLoginResponse) => {
+                if (response.status && response.token) {
+                    const atob = window.atob(response.token.split('.')[1]);
+                    if (atob) {
+                        localStorage.setItem('token', response.token);
+                        localStorage.setItem('userInformation', atob);
+
+                        this.loginStoreService.setLoading(false);
+                        // hacer una redireccion al modulo privado
+                    }
+                } else
+                    this.loginStoreService.setLoading(false);
+            })
+        ), { dispatch: false }
     );
 
     constructor(
