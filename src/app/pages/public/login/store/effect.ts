@@ -7,6 +7,7 @@ import { GENERATE_LOADING, setLogin } from './action';
 import { LoginStoreService } from '../service/login.store.service';
 import { IgenerateLoginResponse } from '../../../../shared/services/login/model/generateLogin/IgenerateLoginResponse';
 import { InformationModalService } from '../../../../shared/components/information-modal/service/information-modal.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginEffects {
@@ -34,7 +35,7 @@ export class LoginEffects {
                         localStorage.setItem('userInformation', atob);
 
                         this.loginStoreService.setLoading(false);
-                        // hacer una redireccion al modulo privado
+                        this.router.navigate(['main']);
                     }
                 } else
                     this.loginStoreService.setLoading(false);
@@ -46,6 +47,7 @@ export class LoginEffects {
         private actions$: Actions,
         private loginService: LoginService,
         private loginStoreService: LoginStoreService,
-        private informationModalService: InformationModalService
+        private informationModalService: InformationModalService,
+        private router: Router
     ) {}
 }

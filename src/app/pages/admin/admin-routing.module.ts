@@ -1,12 +1,17 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AdminComponent } from './component/admin.component';
+import { AdminComponent } from './admin/admin.component';
+import { PanelContainer } from './panel/container/panel-container.component';
 
 const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
         children: [
+            {
+                path: '',
+                component: PanelContainer
+            }
         ]
     }
 ]
