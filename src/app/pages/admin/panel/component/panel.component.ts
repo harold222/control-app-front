@@ -5,7 +5,19 @@ import {
   faFileArchive,
   faMessage,
   faArrowRightFromBracket,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faCalendar,
+  faBusAlt,
+  faCalendarCheck,
+  faFileArrowDown,
+  faPeopleCarryBox,
+  faPlus,
+  faCheck,
+  faListCheck,
+  faCheckSquare,
+  faPersonDotsFromLine,
+  faPenToSquare,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -16,24 +28,30 @@ import {
 })
 export class PanelComponent implements OnInit {
 
-  public expand: boolean = false;
   public icons = {
     main: faComputerMouse,
     profile: faUser,
     report: faFileArchive,
     message: faMessage,
     logout: faArrowRightFromBracket,
-    search: faMagnifyingGlass
+    search: faMagnifyingGlass,
+    calendar: faCalendar,
+    bus: faBusAlt,
+    failure: faCalendarCheck,
+    filedownload: faFileArrowDown,
+    group: faPeopleCarryBox,
+    addPerson: faPlus,
+    addStation: faCheck,
+    list: faListCheck,
+    workstation: faCheckSquare,
+    boss: faPersonDotsFromLine,
+    edit: faPenToSquare,
+    delete: faTrash
   };
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  sidebar() {
-    this.expand = !this.expand;      
   }
 
 }
