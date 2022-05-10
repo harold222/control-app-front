@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AdminStoreService } from '../service/admin.store.service';
+import { takeUntil, Subject } from 'rxjs';
 import {
   faComputerMouse,
   faUser,
@@ -13,7 +15,7 @@ import {
   templateUrl: './admin.component.html',
   styleUrls: ['admin.component.scss']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit, OnDestroy {
 
   public icons = {
     main: faComputerMouse,
@@ -24,5 +26,27 @@ export class AdminComponent {
     search: faMagnifyingGlass
   };
 
-  constructor() { }
+  public infoUser: { image: string, name: string, lastname: string };
+  private unsubscribe = new Subject<void>();
+
+  constructor(private adminStoreService: AdminStoreService) { }
+
+  public ngOnInit(): void {
+    this.adminStoreService.selectUserInfo()
+    .pipe(
+      takeUntil(this.unsubscribe)
+    )
+    .subscribe(data => {
+      this.infoUser = {
+        image: data.image,
+        name: data.name,
+        lastname: data.lastname
+      }
+    })
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
 }

@@ -45,12 +45,15 @@
           <input type="text" placeholder="Buscar...">
           <fa-icon [icon]="icons.search" class='bx bx-search'></fa-icon>
         </div>
-        <div class="profile-details">
-          <img src="images/profile.jpg">
-          <span class="admin_name">
-              Prem Shahi
-          </span>
-        </div>
+
+        <ng-container *ngIf="infoUser?.name">
+          <div class="profile-details">
+            <img [src]="infoUser?.image">
+            <span class="admin_name">
+                {{infoUser?.name}} {{infoUser?.lastname}}
+            </span>
+          </div>
+        </ng-container>
     </nav>
 
     <div class="home-content">

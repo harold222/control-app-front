@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminStoreService } from '../../service/admin.store.service';
+import { Observable } from 'rxjs';
+import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
 
 @Component({
   selector: 'app-panel-container',
@@ -6,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelContainer implements OnInit {
 
-  constructor() { }
+  public loading$: Observable<boolean>;
+  public user$: Observable<InterfaceUserInfo>;
+
+  constructor(private adminStoreService: AdminStoreService) {
+    const userInfo = JSON.parse(localStorage.getItem('userInformation')!!);
+    userInfo && this.adminStoreService.setUserInfo(userInfo)
+  }
 
   ngOnInit(): void {
-    // pasar informacion del localstorage a ngrx aca y no cargar el componente hasta que se cargue esta
-    // info mientras crear un loading
+    this.loading$ = this.adminStoreService.selectLoading();
+    this.user$ = this.adminStoreService.selectUserInfo();
   }
 
 }

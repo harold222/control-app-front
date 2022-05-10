@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
+import { AdminStoreService } from '../../service/admin.store.service';
 import {
   faCalendar,
   faBusAlt,
@@ -37,7 +39,18 @@ export class PanelComponent implements OnInit {
     delete: faTrash
   };
 
-  constructor() { }
+  public userInfo: InterfaceUserInfo;
+
+  @Input() loading: boolean | null;
+
+  @Input() set user(info: InterfaceUserInfo | null) {
+    if (info?.id) {
+      this.userInfo = info;
+      this.adminStoreService.setLoading(false);
+    }
+  }
+
+  constructor(private adminStoreService: AdminStoreService) { }
 
   ngOnInit(): void {
   }
