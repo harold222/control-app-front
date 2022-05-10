@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  faComputerMouse,
-  faUser,
-  faFileArchive,
-  faMessage,
-  faArrowRightFromBracket,
-  faMagnifyingGlass,
   faCalendar,
   faBusAlt,
   faCalendarCheck,
@@ -29,12 +23,6 @@ import {
 export class PanelComponent implements OnInit {
 
   public icons = {
-    main: faComputerMouse,
-    profile: faUser,
-    report: faFileArchive,
-    message: faMessage,
-    logout: faArrowRightFromBracket,
-    search: faMagnifyingGlass,
     calendar: faCalendar,
     bus: faBusAlt,
     failure: faCalendarCheck,

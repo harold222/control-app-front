@@ -1,1 +1,60 @@
-<router-outlet></router-outlet>
+<div class="sidebar">
+    <div class="logo-details">
+      <fa-icon [icon]="icons.main"></fa-icon>
+      <span class="logo_name">ControlApp</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <fa-icon [icon]="icons.profile"></fa-icon>
+          <span class="links_name">
+              Perfil
+          </span>
+        </a>
+      </li>
+      <li>
+          <a href="#">
+              <fa-icon [icon]="icons.message"></fa-icon>
+              <span class="links_name">
+                  Mensajes
+              </span>
+          </a>
+      </li>
+      <li>
+          <a href="#">
+              <fa-icon [icon]="icons.logout"></fa-icon>
+              <span class="links_name">
+                  Salir
+              </span>
+          </a>
+      </li>
+    </ul>
+</div>
+
+<section class="home-section">
+    <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'>
+              <span class="dashboard">
+                  Panel
+              </span>
+          </i>
+          
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Buscar...">
+          <fa-icon [icon]="icons.search" class='bx bx-search'></fa-icon>
+        </div>
+        <div class="profile-details">
+          <img src="images/profile.jpg">
+          <span class="admin_name">
+              Prem Shahi
+          </span>
+        </div>
+    </nav>
+
+    <div class="home-content">
+        <router-outlet></router-outlet>
+    </div>
+
+</section>
