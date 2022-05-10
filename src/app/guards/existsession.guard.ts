@@ -40,6 +40,8 @@ export class ExistsessionGuard implements CanActivate {
   private returnError(): boolean {
     this.informationModalService.setInformation('Ha ocurrido un error', 'Vuelva a iniciar sesion')
     this.informationModalService.setModal(true)
+    localStorage.removeItem('token');
+    localStorage.removeItem('userInformation');
     this.router.navigateByUrl('')
     return false;
   }

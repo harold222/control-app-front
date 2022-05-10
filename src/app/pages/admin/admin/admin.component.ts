@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminStoreService } from '../service/admin.store.service';
 import { takeUntil, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import {
   faComputerMouse,
   faUser,
@@ -29,7 +30,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   public infoUser: { image: string, name: string, lastname: string };
   private unsubscribe = new Subject<void>();
 
-  constructor(private adminStoreService: AdminStoreService) { }
+  constructor(
+    private adminStoreService: AdminStoreService,
+    public router: Router
+  ) { }
 
   public ngOnInit(): void {
     this.adminStoreService.selectUserInfo()
@@ -43,6 +47,21 @@ export class AdminComponent implements OnInit, OnDestroy {
         lastname: data.lastname
       }
     })
+  }
+
+  public logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userInformation');
+    this.adminStoreService.setUserInfo({
+      email: '',
+      exp: 0,
+      id: '',
+      image: '',
+      lastname: '',
+      name: '',
+      rol: ''
+    });
+    this.router.navigateByUrl('');
   }
 
   public ngOnDestroy() {
