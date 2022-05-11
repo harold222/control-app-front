@@ -12,11 +12,11 @@ export class AdminEffects {
     public getStations$ =
         createEffect(() => this.actions$.pipe(
             ofType(actions.getStations),
-            tap(() => this.adminStoreService.setLoading(true)),
             mergeMap((action: { type: string }) => this.stationService.getStationsBySupervisor()),
-            map((response: IgetStationsBySupervisorResponse) => 
-                actions.setStations({ stations: response.stations })
-            )
+            map((response: IgetStationsBySupervisorResponse) => {
+                this.adminStoreService.setLoading(false);
+                return actions.setStations({ stations: response.stations })
+            })
         )
     );
 

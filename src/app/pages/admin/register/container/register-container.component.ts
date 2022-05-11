@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AdminStoreService } from '../../service/admin.store.service';
+import { InterfaceStations } from '../../store/interfaces/InterfaceStations';
 
 @Component({
   selector: 'app-register-container',
@@ -10,6 +11,8 @@ import { AdminStoreService } from '../../service/admin.store.service';
 export class RegisterContainer implements OnInit {
 
   public schedule$: Observable<string>;
+  public stations$: Observable<InterfaceStations[]>;
+  public loading$: Observable<boolean>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -17,6 +20,9 @@ export class RegisterContainer implements OnInit {
     private adminStoreService: AdminStoreService
   ) {
     this.schedule$ = this.adminStoreService.selectTypeOfSchedule();
+    this.stations$ = this.adminStoreService.selectStations();
+    this.loading$ = this.adminStoreService.selectLoading();
+    this.adminStoreService.setLoading(true);
   }
 
   public ngOnInit(): void {
@@ -25,14 +31,18 @@ export class RegisterContainer implements OnInit {
     let goToMain = true;
 
     if (schedule) {
-      if (allowedSchedules.includes(schedule)) {
-        goToMain = false
-      }
+      if (allowedSchedules.includes(schedule)) goToMain = false 
     }
 
-    goToMain && this.router.navigateByUrl('/main')
+    if (goToMain) {
+      this.adminStoreService.setLoading(false);
+      this.router.navigateByUrl('/main')
+    } else this.getStations(schedule);
+  }
+
+  public getStations(schedule: string): void {
     this.adminStoreService.setTypeOfSchedule(schedule);
-    this.adminStoreService.getStations()
+    this.adminStoreService.getStations();
   }
 
 

@@ -1,2 +1,5 @@
-<app-register>
+<app-register
+    [schedule]="schedule$|async"
+    [stations]="stations$|async"
+    [loading]="loading$|async">
 </app-register>

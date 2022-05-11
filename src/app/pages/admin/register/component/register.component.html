@@ -1,3 +1,35 @@
-<div style="background-color: red; width: 200px; height: 200px;">
-
-</div>
+<ng-container *ngIf="!loading">
+    <h3 class="text-center">
+        Eliga la estacion actual para hacer el registro!
+    </h3> <br>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <ng-container *ngFor="let station of stations">
+                <div class="col">
+                    <div class="card h-100">
+                        <img [src]="station.image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ station.name }}
+                            </h5>
+                            <p class="card-text">
+                                {{ station.description }}
+                            </p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-primary"
+                                    (click)="selectStation(station._id)">
+                                    Elegir
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                {{ station.direction }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

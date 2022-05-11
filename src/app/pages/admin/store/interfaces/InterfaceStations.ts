@@ -1,4 +1,5 @@
 export interface InterfaceStations {
+    _id: string;
     name: string;
     direction: string;
     phone: string;
