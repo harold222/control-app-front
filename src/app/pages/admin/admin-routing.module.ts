@@ -8,11 +8,14 @@ const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
+        canActivate: [ExistsessionGuard],
         children: [
             {
                 path: '',
-                canActivate: [ExistsessionGuard],
                 component: PanelContainer
+            },
+            {
+                path: 'register',
             }
         ]
     }

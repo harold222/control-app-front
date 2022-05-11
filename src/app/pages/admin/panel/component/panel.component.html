@@ -9,7 +9,9 @@
 
 <ng-template #elementsPanel>
   <div class="overview-boxes">
-    <div class="box">
+
+    <a class="box" routerLink="register"
+      *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Registrar Horario Operarios
@@ -25,9 +27,10 @@
         <i class='bx bx-cart-alt cart'>
             <fa-icon [icon]="icons.calendar"></fa-icon>
         </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Estaciones Asignadas
@@ -40,9 +43,10 @@
       <i class='bx bxs-cart-add cart two'>
         <fa-icon [icon]="icons.bus"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Visualizar Fallas Operarios
@@ -55,9 +59,10 @@
       <i class='bx bx-cart cart three'>
         <fa-icon [icon]="icons.failure"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'HUMAN_RESOURCES_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Generar Reportes Operarios
@@ -70,9 +75,10 @@
       <i class='bx bxs-cart-download cart four'>
         <fa-icon [icon]="icons.filedownload"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Ver Personal Asignado
@@ -85,9 +91,10 @@
       <i class='bx bxs-cart-download cart four'>
         <fa-icon [icon]="icons.group"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'ADMIN_ROLE'">
       <div class="right-side">
         <div class="box-topic">
             Crear Un Nuevo Usuario
@@ -100,9 +107,10 @@
       <i class='bx bxs-cart-download cart three'>
         <fa-icon [icon]="icons.addPerson"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'ADMIN_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Crear Una Nueva Estacion
@@ -115,9 +123,10 @@
       <i class='bx bxs-cart-download cart two'>
         <fa-icon [icon]="icons.addStation"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Verificar Historial Ingresos
@@ -130,9 +139,10 @@
       <i class='bx bxs-cart-download cart one'>
         <fa-icon [icon]="icons.list"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'OPERATOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Verificar Estacion Asignada
@@ -145,9 +155,10 @@
       <i class='bx bxs-cart-download cart four'>
         <fa-icon [icon]="icons.workstation"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'OPERATOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Verificar Supervisor Asignado
@@ -160,9 +171,10 @@
       <i class='bx bxs-cart-download cart two'>
         <fa-icon [icon]="icons.boss"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'ADMIN_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Crear Un Nuevo Rol
@@ -175,9 +187,10 @@
       <i class='bx bxs-cart-download cart three'>
         <fa-icon [icon]="icons.addPerson"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'ADMIN_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Ver Listado De Estaciones
@@ -190,9 +203,10 @@
       <i class='bx bxs-cart-download cart four'>
         <fa-icon [icon]="icons.edit"></fa-icon>
       </i>
-    </div>
+    </a>
   
-    <div class="box">
+    <a class="box"
+      *ngIf="userInfo?.rol === 'ADMIN_ROLE'">
       <div class="right-side">
         <div class="box-topic">
           Eliminar Un Usuario
@@ -205,7 +219,8 @@
       <i class='bx bxs-cart-download cart one'>
         <fa-icon [icon]="icons.delete"></fa-icon>
       </i>
-    </div>
+    </a>
+
   </div>
 </ng-template>
 
