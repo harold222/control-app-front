@@ -1,4 +1,4 @@
 export interface InterfaceErrorModal {
-    errors: number[];
+    error: string;
     modal: boolean;
 }

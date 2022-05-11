@@ -21,9 +21,9 @@ export class InterceptorToken implements HttpInterceptor {
         private ErrorModalService: ErrorModalService
     ) {}
 
-    public createError(codeError: number): void {
+    public createError(message: string): void {
         this.ErrorModalService.setModal(true);
-        this.ErrorModalService.setError(codeError);
+        this.ErrorModalService.setError(message);
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -33,10 +33,9 @@ export class InterceptorToken implements HttpInterceptor {
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         if (request.url.indexOf('.json') === -1) {
-                            console.log('aca: ', error.error);
                             (error?.error) ?
-                                this.createError(error.status) : 
-                                this.createError(-1);
+                                this.createError(error.error.message) : 
+                                this.createError('Se ha generado un problema vuelva a intentarlo');
                         }
                         return request.url.includes('auth/login') ?
                             throwError(error):
@@ -56,8 +55,8 @@ export class InterceptorToken implements HttpInterceptor {
                 catchError((error: HttpErrorResponse) => {
                     if (request.url.indexOf('.json') === -1) {
                         (error?.error) ?
-                            this.createError(error.status) : 
-                            this.createError(-1);
+                            this.createError(error.error.message) : 
+                            this.createError('Se ha generado un problema vuelva a intentarlo');
                     }
                     return throwError(error);
                 })

@@ -11,22 +11,10 @@ import { ErrorModalService } from '../../service/error-modal.service';
 })
 export class ErrorModalComponent {
 
-  public displayClose: boolean = false;
-  public errorList: number[] = [];
-  public redirectTologIn: boolean = false;
   public iconTimes = faTimes;
 
   @Input() public close: () => void;
-
-  @Input() set errorListInput(errorList: number[] | null) {
-    if (errorList) {
-      this.errorList = Array.from(new Set(errorList));
-      this.redirectTologIn = this.errorList.includes(1001) || this.errorList.includes(1000);
-      this.displayClose = !this.errorList.includes(-1)
-          && !this.errorList.includes(1001)
-          && !this.errorList.includes(1000);
-    }
-  }
+  @Input() public error: string | null;
 
   @Input() set selectModal(modal: boolean | null) {
     if (modal != null && modal === true) this.showModal();

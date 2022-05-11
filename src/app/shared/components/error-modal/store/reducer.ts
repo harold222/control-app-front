@@ -3,22 +3,20 @@ import * as errorActions from './action';
 import { InterfaceErrorModal } from './index';
 
 export const initialErrorModalState: InterfaceErrorModal = {
-    errors: [],
+    error: '',
     modal:  false,
 };
 
 export const errorReducer = createReducer(
     initialErrorModalState,
-    on(errorActions.setError, (state: InterfaceErrorModal, action: { errorCode: number }) => {
+    on(errorActions.setError, (state: InterfaceErrorModal, action: { error: string }) => {
         const newState: InterfaceErrorModal = { ...state};
-        const errors: number[] = [...newState.errors];
-        errors.push(action.errorCode);
-        newState.errors = [...errors];
+        newState.error = action.error;
         return newState;
     }),
     on(errorActions.clearErrors, (state: InterfaceErrorModal) => {
         const newState: InterfaceErrorModal = { ...state};
-        newState.errors = [...[]];
+        newState.error = '';
         return newState;
     }),
     on(errorActions.setModal, (state: InterfaceErrorModal, action: { open: boolean }) => {

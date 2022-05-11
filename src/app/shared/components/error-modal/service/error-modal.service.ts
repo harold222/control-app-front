@@ -14,11 +14,11 @@ export class ErrorModalService {
 
   public clearErrors = (): void => this.store.dispatch(actions.clearErrors());
 
-  public selectErrors = (): Observable<number[]> => this.store.select(selectors.selectErrors);
+  public selectErrors = (): Observable<string> => this.store.select(selectors.selectErrors);
 
   public selectModal = (): Observable<boolean> => this.store.select(selectors.selectModal);
 
-  public setError = (errorCode: number): void => this.store.dispatch(actions.setError({ errorCode }));
+  public setError = (error: string): void => this.store.dispatch(actions.setError({ error }));
 
   public setModal = (open: boolean): void => this.store.dispatch(actions.setModal({ open }));
 }

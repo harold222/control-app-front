@@ -13,26 +13,15 @@
 
             <hr>
 
-            <div *ngFor="let error of errorList" class="modal-error-error-list">
-                <ng-container [ngSwitch]="error">
-                    <span *ngSwitchCase="1000 || 1001">
-                        Se ha acabado su sesion.
-                    </span>
-                    <span *ngSwitchDefault>
-                        Ha ocurrido un error
-                    </span>
-                </ng-container>
-            </div>
+            <p>
+                {{error}}
+            </p>
         </div>
 
         <div class="modal-error-error-actions">
-            <button type="button" (click)="closeModal()" *ngIf="!redirectTologIn"
+            <button type="button" (click)="closeModal()"
                 class="btn btn-danger">
                 Cerrar
-            </button>
-            <button *ngIf="redirectTologIn" [routerLink]="'login'" (click)="goLogin()" type="button"
-                class="btn btn-danger">
-                Volver a ingresar
             </button>
         </div>
 

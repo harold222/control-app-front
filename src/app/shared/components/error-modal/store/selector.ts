@@ -10,4 +10,4 @@ export const selectModal = createSelector(
     (errorModalState: InterfaceErrorModal) => errorModalState.modal);
     
 export const selectErrors = createSelector(
-    selectErrorModalState, (errorModalState: InterfaceErrorModal) => errorModalState.errors);
+    selectErrorModalState, (errorModalState: InterfaceErrorModal) => errorModalState.error);

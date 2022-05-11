@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ErrorModalContainer implements OnInit {
 
-  public errorList$: Observable<number[]>;
+  public errorList$: Observable<string>;
   public selectModal$: Observable<boolean>;
 
   constructor(private ErrorModalService: ErrorModalService) {}
