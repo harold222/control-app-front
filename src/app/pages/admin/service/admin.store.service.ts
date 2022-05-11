@@ -40,5 +40,8 @@ export class AdminStoreService {
 
     public setUsersByStations = (usersByStations: InterfaceUser[]) =>
         this.store.dispatch(actions.setUsersByStations({ usersByStations }));
+
+    public getUsersByStation = (idStation: string) =>
+        this.store.dispatch(actions.getUsersByStations({ idStation }));
     
 }

@@ -6,6 +6,7 @@ import { AdminStoreService } from '../service/admin.store.service';
 import { StationService } from '../../../shared/services/station/station.service';
 import { IgetStationsBySupervisorResponse } from '../../../shared/services/station/model/IgetStationsBySupervisorResponse';
 import { RegistrationService } from '../../../shared/services/registration/registration.service';
+import { ICreateNewRegistration } from '../../../shared/services/registration/model/CreateNewRegistration/ICreateNewRegistration';
 
 @Injectable()
 export class AdminEffects {
@@ -26,10 +27,8 @@ export class AdminEffects {
             ofType(actions.getUsersByStations),
             mergeMap((action: { idStation: string, type: string }) =>
                 this.registrationService.getStationsBySupervisor(action.idStation)),
-            map((response: any) => {
-                console.log('es: ', response)
-            })
-        ), { dispatch: false }
+            map((response: ICreateNewRegistration) => actions.setUsersByStations({ usersByStations: response.users }))
+        )
     );
 
     constructor(

@@ -33,6 +33,7 @@ export class InterceptorToken implements HttpInterceptor {
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         if (request.url.indexOf('.json') === -1) {
+                            console.log('aca: ', error.error);
                             (error?.error) ?
                                 this.createError(error.status) : 
                                 this.createError(-1);

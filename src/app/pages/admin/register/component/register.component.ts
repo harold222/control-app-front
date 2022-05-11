@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InterfaceStations } from '../../store/interfaces/InterfaceStations';
+import { AdminStoreService } from '../../service/admin.store.service';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,13 @@ export class RegisterComponent implements OnInit {
 
   @Input() public loading: boolean | null;
 
-  constructor() { }
+  constructor(private adminStoreService: AdminStoreService) { }
 
   ngOnInit(): void {
   }
 
   public selectStation(id: any): void {
-    console.log('es: ', id)
+    this.adminStoreService.getUsersByStation(id);
   }
 
 }
