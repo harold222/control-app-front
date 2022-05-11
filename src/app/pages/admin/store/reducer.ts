@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import * as actions from './action';
 import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
+import { InterfaceUser } from './interfaces/InterfaceUser';
 
 export const initialMainState: InterfaceMainState = {
     loading: true,
@@ -16,7 +17,8 @@ export const initialMainState: InterfaceMainState = {
         rol: ''
     },
     typeOfSchedule: '',
-    stations: []
+    stations: [],
+    usersByStations: []
 }
 
 export const Main = createReducer(
@@ -39,6 +41,11 @@ export const Main = createReducer(
     on(actions.setStations, (state: InterfaceMainState, action: { stations: InterfaceStations[] }) => {
         const newState: InterfaceMainState = {...state};
         newState.stations = action.stations;
+        return newState;
+    }),
+    on(actions.setUsersByStations, (state: InterfaceMainState, action: { usersByStations: InterfaceUser[] }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.usersByStations = action.usersByStations;
         return newState;
     }),
 )

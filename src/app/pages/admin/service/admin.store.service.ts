@@ -5,6 +5,7 @@ import * as actions from '../store/action';
 import * as selectors from '../store/selector'
 import { Observable } from 'rxjs';
 import { InterfaceUserInfo } from '../store/interfaces/InterfaceUserInfo';
+import { InterfaceUser } from '../store/interfaces/InterfaceUser';
 
 @Injectable({
     providedIn: 'root',
@@ -34,4 +35,10 @@ export class AdminStoreService {
     public getStations = () => this.store.dispatch(actions.getStations());
 
     public selectStations = () => this.store.select(selectors.selectStations);
+
+    public selectUsersByStations = () => this.store.select(selectors.selectUsersByStations);
+
+    public setUsersByStations = (usersByStations: InterfaceUser[]) =>
+        this.store.dispatch(actions.setUsersByStations({ usersByStations }));
+    
 }

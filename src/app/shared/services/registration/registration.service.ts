@@ -14,7 +14,7 @@ export class RegistrationService {
 
   public getStationsBySupervisor(idStation: string): Observable<any> {
     return this.http.get<any>(
-      `${this.url}create`, idStation
+      `${this.url}create?idStation=${idStation}`
     )
   }
 

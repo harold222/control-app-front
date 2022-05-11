@@ -2,6 +2,7 @@ import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { InterfaceMainState } from './interfaces/InterfaceMainState';
 import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
+import { InterfaceUser } from './interfaces/InterfaceUser';
 
 export const selectAdminState = (state: any) => (
     state.Main
@@ -26,3 +27,8 @@ export const selectStations: MemoizedSelector<InterfaceMainState, InterfaceStati
     createSelector(
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.stations);
+
+export const selectUsersByStations: MemoizedSelector<InterfaceMainState, InterfaceUser[]> =
+    createSelector(
+        selectAdminState,
+        (mainState: InterfaceMainState) => mainState.usersByStations);
