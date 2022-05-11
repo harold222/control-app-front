@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AdminStoreService } from '../../service/admin.store.service';
 import { InterfaceStations } from '../../store/interfaces/InterfaceStations';
+import { InterfaceUser } from '../../store/interfaces/InterfaceUser';
 
 @Component({
   selector: 'app-register-container',
@@ -13,6 +14,8 @@ export class RegisterContainer implements OnInit {
   public schedule$: Observable<string>;
   public stations$: Observable<InterfaceStations[]>;
   public loading$: Observable<boolean>;
+  public usersByStation$: Observable<InterfaceUser[]>;
+  public typeSchedule: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +25,7 @@ export class RegisterContainer implements OnInit {
     this.schedule$ = this.adminStoreService.selectTypeOfSchedule();
     this.stations$ = this.adminStoreService.selectStations();
     this.loading$ = this.adminStoreService.selectLoading();
+    this.usersByStation$ = this.adminStoreService.selectUsersByStations();
     this.adminStoreService.setLoading(true);
   }
 
@@ -31,6 +35,7 @@ export class RegisterContainer implements OnInit {
     let goToMain = true;
 
     if (schedule) {
+      this.typeSchedule = schedule;
       if (allowedSchedules.includes(schedule)) goToMain = false 
     }
 

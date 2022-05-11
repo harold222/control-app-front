@@ -1,35 +1,61 @@
 <ng-container *ngIf="!loading">
-    <h3 class="text-center">
-        Eliga la estacion actual para hacer el registro!
-    </h3> <br>
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <ng-container *ngFor="let station of stations">
-                <div class="col">
-                    <div class="card h-100">
-                        <img [src]="station.image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ station.name }}
-                            </h5>
-                            <p class="card-text">
-                                {{ station.description }}
-                            </p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-primary"
-                                    (click)="selectStation(station._id)">
-                                    Elegir
-                                </button>
+    <ng-container *ngIf="usersByStation?.length; else selectStations">
+        <h3 class="text-center">
+            ¡Busque su nombre y documento!
+        </h3> <hr>
+        <div class="container">
+            <div class="row">
+                <div class="list-group" *ngFor="let user of usersByStation">
+                    <button type="button" (click)="selectUser(user._id)"
+                        class="list-group-item list-group-item-action list-users-text">
+                        <p>
+                            <strong>usuario:</strong> {{ user.name }} {{ user.lastname }}
+                        </p>
+                        <p>
+                            <strong>correo: </strong> {{ user.email }}
+                        </p>
+                        <p>
+                            <strong>documento:</strong> {{ user.document }}
+                        </p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #selectStations>
+        <h3 class="text-center">
+            Eliga la estacion actual para hacer el registro!
+        </h3> <br>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <ng-container *ngFor="let station of stations">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img [src]="station.image" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {{ station.name }}
+                                </h5>
+                                <p class="card-text">
+                                    {{ station.description }}
+                                </p>
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-outline-primary"
+                                        (click)="selectStation(station._id)">
+                                        Elegir
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">
+                                    {{ station.direction }}
+                                </small>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">
-                                {{ station.direction }}
-                            </small>
-                        </div>
                     </div>
-                </div>
-            </ng-container>
+                </ng-container>
+            </div>
         </div>
-    </div>
+    </ng-template>
 </ng-container>

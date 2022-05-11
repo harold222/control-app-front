@@ -10,6 +10,7 @@ import { PanelComponent } from './panel/component/panel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterContainer } from './register/container/register-container.component';
 import { RegisterComponent } from './register/component/register.component';
+import { ExitComponent } from './register/exit/exit.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { RegisterComponent } from './register/component/register.component';
     PanelComponent,
     RegisterContainer,
     RegisterComponent,
+    ExitComponent,
   ],
   imports: [
     CommonModule,

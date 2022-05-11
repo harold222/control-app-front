@@ -1,5 +1,16 @@
-<app-register
-    [schedule]="schedule$|async"
-    [stations]="stations$|async"
-    [loading]="loading$|async">
-</app-register>
+<ng-container *ngIf="typeSchedule">
+    <ng-container *ngIf="typeSchedule === 'ingress'; else exit">
+        <app-register
+            [schedule]="schedule$|async"
+            [stations]="stations$|async"
+            [loading]="loading$|async"
+            [usersByStation]="usersByStation$|async">
+        </app-register>
+    </ng-container>
+
+    <ng-template #exit>
+
+    </ng-template>
+    
+
+</ng-container>
