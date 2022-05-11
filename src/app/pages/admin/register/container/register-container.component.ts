@@ -49,12 +49,4 @@ export class RegisterContainer implements OnInit {
     this.adminStoreService.setTypeOfSchedule(schedule);
     this.adminStoreService.getStations();
   }
-
-
-  // crear un endpoint para obtener todas las estaciones asociadas a un id de supervisor
-  // retorno toda la info de las estaciones, en el front se muestra un listado de esas estaciones
-  // el usuario selecciona que estacion desea, con eso llamo el endpoint de registration/create con 
-  // solo el id de estacion y modificar ese endpoint para que me retorne en vez de los ids toda la informacion
-  // de los operarios que se crearon un registro con eso muestro un listado de los operarios y solo con un toque
-  // se abre otra ventana la cual me muestra informacion del usuario y la opcion para hacer el registro
 }

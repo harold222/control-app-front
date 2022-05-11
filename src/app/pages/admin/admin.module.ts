@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterContainer } from './register/container/register-container.component';
 import { RegisterComponent } from './register/component/register.component';
 import { ExitComponent } from './register/exit/exit.component';
+import { UserregisterContainer } from './userregister/container/userregister-container.component';
+import { UserregisterComponent } from './userregister/component/userregister.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { ExitComponent } from './register/exit/exit.component';
     RegisterContainer,
     RegisterComponent,
     ExitComponent,
+    UserregisterContainer,
+    UserregisterComponent,
   ],
   imports: [
     CommonModule,

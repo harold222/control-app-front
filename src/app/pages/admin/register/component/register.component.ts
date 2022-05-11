@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InterfaceStations } from '../../store/interfaces/InterfaceStations';
 import { AdminStoreService } from '../../service/admin.store.service';
 import { InterfaceUser } from '../../store/interfaces/InterfaceUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,17 +19,23 @@ export class RegisterComponent implements OnInit {
 
   @Input() public usersByStation: InterfaceUser[] | null;
 
-  constructor(private adminStoreService: AdminStoreService) { }
+  public selectedStation: string;
+
+  constructor(
+    private adminStoreService: AdminStoreService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   public selectStation(id: string): void {
     this.adminStoreService.getUsersByStation(id);
+    this.selectedStation = id;
   }
 
   public selectUser(id: string): void {
-    console.log('es: ', id)
+    this.router.navigate([`/main/register/${this.selectedStation}/${id}`]);
   }
 
 }
