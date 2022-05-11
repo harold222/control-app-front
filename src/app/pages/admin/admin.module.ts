@@ -8,6 +8,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PanelContainer } from './panel/container/panel-container.component';
 import { PanelComponent } from './panel/component/panel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegisterContainer } from './register/container/register-container.component';
+import { RegisterComponent } from './register/component/register.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminComponent,
     PanelContainer,
     PanelComponent,
+    RegisterContainer,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

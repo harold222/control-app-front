@@ -33,7 +33,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   constructor(
     private adminStoreService: AdminStoreService,
     public router: Router
-  ) { }
+  ) {
+    const userInfo = JSON.parse(localStorage.getItem('userInformation')!!);
+    userInfo && this.adminStoreService.setUserInfo(userInfo)
+  }
 
   public ngOnInit(): void {
     this.adminStoreService.selectUserInfo()

@@ -12,12 +12,9 @@ export class PanelContainer implements OnInit {
   public loading$: Observable<boolean>;
   public user$: Observable<InterfaceUserInfo>;
 
-  constructor(private adminStoreService: AdminStoreService) {
-    const userInfo = JSON.parse(localStorage.getItem('userInformation')!!);
-    userInfo && this.adminStoreService.setUserInfo(userInfo)
-  }
+  constructor(private adminStoreService: AdminStoreService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loading$ = this.adminStoreService.selectLoading();
     this.user$ = this.adminStoreService.selectUserInfo();
   }
