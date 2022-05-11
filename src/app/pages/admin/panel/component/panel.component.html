@@ -10,7 +10,8 @@
 <ng-template #elementsPanel>
   <div class="overview-boxes">
 
-    <a class="box" routerLink="register"
+    <a class="box"
+      routerLink="register" [queryParams]="{schedule: 'ingress'}"
       *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">

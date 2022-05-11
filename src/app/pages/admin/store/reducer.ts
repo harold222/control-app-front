@@ -2,6 +2,7 @@ import { InterfaceMainState } from './interfaces/InterfaceMainState';
 import { createReducer, on, Action } from '@ngrx/store';
 import * as actions from './action';
 import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
+import { InterfaceStations } from './interfaces/InterfaceStations';
 
 export const initialMainState: InterfaceMainState = {
     loading: true,
@@ -13,7 +14,9 @@ export const initialMainState: InterfaceMainState = {
         lastname: '',
         name: '',
         rol: ''
-    }
+    },
+    typeOfSchedule: '',
+    stations: []
 }
 
 export const Main = createReducer(
@@ -26,6 +29,16 @@ export const Main = createReducer(
     on(actions.setUserInfo, (state: InterfaceMainState, action: { user: InterfaceUserInfo }) => {
         const newState: InterfaceMainState = {...state};
         newState.user = action.user;
+        return newState;
+    }),
+    on(actions.setTypeOfSchedule, (state: InterfaceMainState, action: { schedule: string }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.typeOfSchedule = action.schedule;
+        return newState;
+    }),
+    on(actions.setStations, (state: InterfaceMainState, action: { stations: InterfaceStations[] }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.stations = action.stations;
         return newState;
     }),
 )

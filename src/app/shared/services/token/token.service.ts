@@ -8,11 +8,11 @@ export class TokenService {
 
     constructor(){ }
 
-    public getToken = (): string | null => localStorage.getItem('token_back')
+    public getToken = (): string | null => localStorage.getItem('token');
 
-    public removeToken = (): void => localStorage.removeItem('token_back');
+    public removeToken = (): void => localStorage.removeItem('token');
 
-    public updateToken = (newToken: string) => localStorage.setItem('token_back', newToken);
+    public updateToken = (newToken: string) => localStorage.setItem('token', newToken);
     
     public getUserOfToken(): string | null {
         let token = this.getToken()

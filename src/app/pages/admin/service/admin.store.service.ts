@@ -24,4 +24,12 @@ export class AdminStoreService {
 
     public selectUserInfo = (): Observable<InterfaceUserInfo> =>
         this.store.select(selectors.selectUserInfo);
+
+    public setTypeOfSchedule = (schedule: string): void =>
+        this.store.dispatch(actions.setTypeOfSchedule({ schedule }))
+
+    public selectTypeOfSchedule = (): Observable<string> =>
+        this.store.select(selectors.selectTypeOfSchedule);
+
+    public getStations = () => this.store.dispatch(actions.getStations())
 }
