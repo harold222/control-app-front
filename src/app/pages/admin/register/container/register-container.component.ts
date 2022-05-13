@@ -19,7 +19,7 @@ export class RegisterContainer implements OnInit {
   public usersByStation$: Observable<InterfaceUser[]>;
   public idSelectedStation$: Observable<string>;
   public userInfo$: Observable<InterfaceUserInfo>;
-  public record$: Observable<IRecord | null>;
+  public record$: Observable<IRecord>;
   public typeSchedule: string;
 
   constructor(

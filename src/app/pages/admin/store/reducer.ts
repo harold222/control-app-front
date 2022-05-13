@@ -21,7 +21,14 @@ export const initialMainState: InterfaceMainState = {
     stations: [],
     usersByStations: [],
     idSelectedStation: '',
-    currentRecord: null
+    currentRecord: {
+        _id: '',
+        completedExit: false,
+        completedIngress: false,
+        createdTime: '',
+        idStation: '',
+        idSupervisor: ''
+    }
 }
 
 export const Main = createReducer(

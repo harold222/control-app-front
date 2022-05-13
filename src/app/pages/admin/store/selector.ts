@@ -39,7 +39,7 @@ export const selectIdSelectedStation: MemoizedSelector<InterfaceMainState, strin
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.idSelectedStation);
 
-export const selectCurrentRecord: MemoizedSelector<InterfaceMainState, IRecord | null> =
+export const selectCurrentRecord: MemoizedSelector<InterfaceMainState, IRecord> =
     createSelector(
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.currentRecord);

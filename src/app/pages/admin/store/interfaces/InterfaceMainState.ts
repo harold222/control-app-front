@@ -10,5 +10,5 @@ export interface InterfaceMainState {
     stations: InterfaceStations[];
     usersByStations: InterfaceUser[];
     idSelectedStation: string;
-    currentRecord: IRecord | null;
+    currentRecord: IRecord;
 }

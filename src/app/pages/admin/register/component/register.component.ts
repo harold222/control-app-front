@@ -34,7 +34,14 @@ export class RegisterComponent implements OnInit {
 
   @Input() set record(currentRecord: IRecord | null) {
     if (currentRecord) {
-      console.log('es: ', currentRecord)
+      if (currentRecord._id) {
+        // deberia traer todos los usuarios de este historial y guardarlos en usersByStations: response.users tipo InterfaceUser[]
+        // deberia enviar id supervisor, id estacion y createdTime al a ruta /api/registration
+        // para obtener los usuarios que se crearon de ese registro anterior y con eso los guardo
+      }
+    } else {
+      // create a new register and record by station
+      this.adminStoreService.getUsersByStation(this.idStation);
     }
   }
 
@@ -45,10 +52,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
   public selectStation(id: string): void {
-    // arreglar esto
-    // this.adminStoreService.getUsersByStation(id);
     this.adminStoreService.setIdSelectedStation(id);
   }
 

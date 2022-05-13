@@ -22,6 +22,7 @@ export const GET_RECORD_BY_SUPERVISOR: string = '[REGISTER] GET_RECORD_BY_SUPERV
 
 export const SET_CURRENT_RECORD: string = '[REGISTER] SET_CURRENT_RECORD';
 
+
 export const setLoading = createAction(SET_LOADING, props<{ loading: boolean }>());
 export const setUserInfo = createAction(SET_USER_INFO, props<{ user: InterfaceUserInfo }>());
 export const setTypeOfSchedule = createAction(SET_TYPE_OF_SCHEDULE, props<{ schedule: string }>());
