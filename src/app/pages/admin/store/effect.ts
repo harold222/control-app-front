@@ -7,6 +7,8 @@ import { StationService } from '../../../shared/services/station/station.service
 import { IgetStationsBySupervisorResponse } from '../../../shared/services/station/model/IgetStationsBySupervisorResponse';
 import { RegistrationService } from '../../../shared/services/registration/registration.service';
 import { ICreateNewRegistration } from '../../../shared/services/registration/model/CreateNewRegistration/ICreateNewRegistration';
+import { RecordService } from '../../../shared/services/record/record.service';
+import { IGetRecordBySupervisorResponse } from '../../../shared/services/record/model/IGetRecordBySupervisorResponse';
 
 @Injectable()
 export class AdminEffects {
@@ -31,10 +33,20 @@ export class AdminEffects {
         )
     );
 
+    public getRecordBySupervisor$ =
+        createEffect(() => this.actions$.pipe(
+            ofType(actions.getRecordBySupervisor),
+            mergeMap((action: { idSupervisor: string, idStation: string, type: string }) =>
+                this.recordService.getRecordBySupervisor(action.idSupervisor, action.idStation)),
+            map((response: IGetRecordBySupervisorResponse) => actions.setCurrentRecord({ record: response.record }))
+        )
+    );  
+
     constructor(
         private actions$: Actions,
         private adminStoreService: AdminStoreService,
         private stationService: StationService,
-        private registrationService: RegistrationService
+        private registrationService: RegistrationService,
+        private recordService: RecordService   
     ) {}
 }

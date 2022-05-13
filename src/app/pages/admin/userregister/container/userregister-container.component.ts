@@ -7,11 +7,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserregisterContainer implements OnInit {
 
+  public typeOfSchedule: string;
+
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let a = this.activatedRoute.snapshot.queryParams
-    console.log('son: ', a)
+    const idStation = this.activatedRoute.snapshot.params['idStation']
+    const idOperator = this.activatedRoute.snapshot.params['idOperator']
+
+    this.typeOfSchedule = this.activatedRoute.snapshot.queryParams['schedule']
   }
 
 }

@@ -3,6 +3,7 @@ import { InterfaceMainState } from './interfaces/InterfaceMainState';
 import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
+import { IRecord } from '../../../shared/services/record/model/IRecord';
 
 export const selectAdminState = (state: any) => (
     state.Main
@@ -32,3 +33,13 @@ export const selectUsersByStations: MemoizedSelector<InterfaceMainState, Interfa
     createSelector(
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.usersByStations);
+
+export const selectIdSelectedStation: MemoizedSelector<InterfaceMainState, string> =
+    createSelector(
+        selectAdminState,
+        (mainState: InterfaceMainState) => mainState.idSelectedStation);
+
+export const selectCurrentRecord: MemoizedSelector<InterfaceMainState, IRecord | null> =
+    createSelector(
+        selectAdminState,
+        (mainState: InterfaceMainState) => mainState.currentRecord);

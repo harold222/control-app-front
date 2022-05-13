@@ -44,4 +44,13 @@ export class AdminStoreService {
     public getUsersByStation = (idStation: string) =>
         this.store.dispatch(actions.getUsersByStations({ idStation }));
     
+    public setIdSelectedStation = (idSelectedStation: string) =>
+        this.store.dispatch(actions.setIdSelectedStation({ idSelectedStation }));
+
+    public selectIdSelectedStation = () => this.store.select(selectors.selectIdSelectedStation);
+
+    public getRecordBySupervisor = (idSupervisor: string, idStation: string) =>
+        this.store.dispatch(actions.getRecordBySupervisor({ idSupervisor, idStation }));
+
+    public selectCurrentRecord = () => this.store.select(selectors.selectCurrentRecord);
 }

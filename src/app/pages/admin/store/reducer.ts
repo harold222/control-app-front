@@ -4,6 +4,7 @@ import * as actions from './action';
 import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
+import { IRecord } from '../../../shared/services/record/model/IRecord';
 
 export const initialMainState: InterfaceMainState = {
     loading: true,
@@ -18,7 +19,9 @@ export const initialMainState: InterfaceMainState = {
     },
     typeOfSchedule: '',
     stations: [],
-    usersByStations: []
+    usersByStations: [],
+    idSelectedStation: '',
+    currentRecord: null
 }
 
 export const Main = createReducer(
@@ -46,6 +49,16 @@ export const Main = createReducer(
     on(actions.setUsersByStations, (state: InterfaceMainState, action: { usersByStations: InterfaceUser[] }) => {
         const newState: InterfaceMainState = {...state};
         newState.usersByStations = action.usersByStations;
+        return newState;
+    }),
+    on(actions.setIdSelectedStation, (state: InterfaceMainState, action: { idSelectedStation: string }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.idSelectedStation = action.idSelectedStation;
+        return newState;
+    }),
+    on(actions.setCurrentRecord, (state: InterfaceMainState, action: { record: IRecord }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.currentRecord = action.record;
         return newState;
     }),
 )
