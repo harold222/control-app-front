@@ -10,7 +10,6 @@ import { PanelComponent } from './panel/component/panel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterContainer } from './register/container/register-container.component';
 import { RegisterComponent } from './register/component/register.component';
-import { ExitComponent } from './register/exit/exit.component';
 import { UserregisterContainer } from './userregister/container/userregister-container.component';
 import { UserregisterComponent } from './userregister/component/userregister.component';
 import { InformationModalsModule } from '../../shared/components/information-modal/information-modal.module';
@@ -23,7 +22,6 @@ import { InformationModalsModule } from '../../shared/components/information-mod
     PanelComponent,
     RegisterContainer,
     RegisterComponent,
-    ExitComponent,
     UserregisterContainer,
     UserregisterComponent,
   ],
