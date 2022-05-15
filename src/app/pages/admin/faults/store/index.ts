@@ -1,5 +1,5 @@
 import * as actions from './action';
-import { initialMainState, reducer } from './reducer';
+import { initialFaultState, reducer } from './reducer';
 import * as selectors from './selector';
 
 import { InterfaceFaultState } from './interfaces/InterfaceFaultState';
@@ -11,7 +11,7 @@ export * from './selector';
 export {
     InterfaceFaultState,
     actions,
-    initialMainState,
+    initialFaultState,
     reducer,
     selectors,
 };

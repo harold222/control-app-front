@@ -9,6 +9,8 @@ import { FaultsRoutingModule } from './faults-routing.module';
 import { FaultsContainer } from './container/faults-container.component';
 import { FaultsComponent } from './faults/component/faults.component';
 import { FaultsContaienrComponent } from './faults/container/faults-contaienr.component';
+import { UsersContainer } from './users/container/users-container.component';
+import { UsersComponent } from './users/component/users.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { FaultsContaienrComponent } from './faults/container/faults-contaienr.co
     FaultsContainer,
     FaultsComponent,
     FaultsContaienrComponent,
+    UsersContainer,
+    UsersComponent,
   ],
   imports: [
     CommonModule,

@@ -1,1 +1,33 @@
-<p>faults works!</p>
+<h3 class="text-center">
+    Eliga la estacion para ver las fallas
+</h3> <br>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <ng-container *ngFor="let station of stations">
+            <div class="col">
+                <div class="card h-100">
+                    <img [src]="station.station.image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ station.station.name }}
+                        </h5>
+                        <p class="card-text">
+                            {{ station.station.description }}
+                        </p>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-outline-primary"
+                                (click)="selectStation(station.station._id)">
+                                Escoger
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            {{ station.station.direction }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
