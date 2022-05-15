@@ -5,6 +5,7 @@ import { InterfaceUser } from '../../store/interfaces/InterfaceUser';
 import { Router } from '@angular/router';
 import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
 import { IRecord } from '../../../../shared/services/record/model/IRecord';
+import { InformationModalService } from '../../../../shared/components/information-modal/service/information-modal.service';
 
 @Component({
   selector: 'app-register',
@@ -35,19 +36,27 @@ export class RegisterComponent implements OnInit {
   @Input() set record(currentRecord: IRecord | null) {
     if (currentRecord) {
       if (currentRecord._id) {
-        // deberia traer todos los usuarios de este historial y guardarlos en usersByStations: response.users tipo InterfaceUser[]
-        // deberia enviar id supervisor, id estacion y createdTime al a ruta /api/registration
-        // para obtener los usuarios que se crearon de ese registro anterior y con eso los guardo
+
+        this.informationModalService.setInformation(
+          'Registro',
+          'Actualmente para esta estacion cuenta con un registro abierto, termine de registrar los operararios y continue con el cierre.');
+        this.informationModalService.setModal(true);
+
+        this.adminStoreService.getOperatorsByRecord({
+          createdTime: currentRecord.createdTime,
+          idStation: this.idStation,
+          idSupervisor: this.userInfo?.id!!,
+          schedule: this.schedule!!
+        })
       }
-    } else {
-      // create a new register and record by station
+    } else
       this.adminStoreService.getUsersByStation(this.idStation);
-    }
   }
 
   constructor(
     private adminStoreService: AdminStoreService,
-    private router: Router
+    private router: Router,
+    private informationModalService: InformationModalService
   ) { }
 
   ngOnInit(): void {

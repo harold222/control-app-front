@@ -3,6 +3,7 @@ import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
+import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
 
 export const SET_LOADING: string = '[MAIN] SET_LOADING';
 
@@ -22,6 +23,7 @@ export const GET_RECORD_BY_SUPERVISOR: string = '[REGISTER] GET_RECORD_BY_SUPERV
 
 export const SET_CURRENT_RECORD: string = '[REGISTER] SET_CURRENT_RECORD';
 
+export const GET_OPERATORS_BY_RECORD: string = '[REGISTER] GET_OPERATORS_BY_RECORD';
 
 export const setLoading = createAction(SET_LOADING, props<{ loading: boolean }>());
 export const setUserInfo = createAction(SET_USER_INFO, props<{ user: InterfaceUserInfo }>());
@@ -33,3 +35,4 @@ export const getUsersByStations = createAction(GET_USERS_BY_STATIONS, props<{ id
 export const setIdSelectedStation = createAction(SET_SELECTED_STATION, props<{ idSelectedStation: string }>());
 export const getRecordBySupervisor = createAction(GET_RECORD_BY_SUPERVISOR, props<{ idSupervisor: string, idStation: string }>());
 export const setCurrentRecord = createAction(SET_CURRENT_RECORD, props<{ record: IRecord }>());
+export const getOperatorsByRecord = createAction(GET_OPERATORS_BY_RECORD, props<{ request: IGetOperatorsByRecordRequest }>());

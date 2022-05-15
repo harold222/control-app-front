@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/component/register.component';
 import { ExitComponent } from './register/exit/exit.component';
 import { UserregisterContainer } from './userregister/container/userregister-container.component';
 import { UserregisterComponent } from './userregister/component/userregister.component';
+import { InformationModalsModule } from '../../shared/components/information-modal/information-modal.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UserregisterComponent } from './userregister/component/userregister.com
     ReactiveFormsModule,
     FormsModule,
     AdminRoutingModule,
+    InformationModalsModule,
     ErrorModalsModule,
   ]
 })

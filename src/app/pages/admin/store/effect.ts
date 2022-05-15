@@ -9,6 +9,8 @@ import { RegistrationService } from '../../../shared/services/registration/regis
 import { ICreateNewRegistration } from '../../../shared/services/registration/model/CreateNewRegistration/ICreateNewRegistration';
 import { RecordService } from '../../../shared/services/record/record.service';
 import { IGetRecordBySupervisorResponse } from '../../../shared/services/record/model/IGetRecordBySupervisorResponse';
+import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
+import { IGetOperatorsByRecordResponse } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordResponse';
 
 @Injectable()
 export class AdminEffects {
@@ -39,6 +41,16 @@ export class AdminEffects {
             mergeMap((action: { idSupervisor: string, idStation: string, type: string }) =>
                 this.recordService.getRecordBySupervisor(action.idSupervisor, action.idStation)),
             map((response: IGetRecordBySupervisorResponse) => actions.setCurrentRecord({ record: response.record }))
+        )
+    );  
+
+    public getOperatorsByRecord$ =
+        createEffect(() => this.actions$.pipe(
+            ofType(actions.getOperatorsByRecord),
+            mergeMap((action: { request: IGetOperatorsByRecordRequest, type: string }) =>
+                this.registrationService.getOperatorsByRecord(action.request)),
+            map((response: IGetOperatorsByRecordResponse) =>
+                actions.setUsersByStations({ usersByStations: response.allUsers }))
         )
     );  
 

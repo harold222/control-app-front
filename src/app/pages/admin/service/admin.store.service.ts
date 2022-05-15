@@ -6,6 +6,7 @@ import * as selectors from '../store/selector'
 import { Observable } from 'rxjs';
 import { InterfaceUserInfo } from '../store/interfaces/InterfaceUserInfo';
 import { InterfaceUser } from '../store/interfaces/InterfaceUser';
+import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
 
 @Injectable({
     providedIn: 'root',
@@ -53,4 +54,7 @@ export class AdminStoreService {
         this.store.dispatch(actions.getRecordBySupervisor({ idSupervisor, idStation }));
 
     public selectCurrentRecord = () => this.store.select(selectors.selectCurrentRecord);
+
+    public getOperatorsByRecord = (request: IGetOperatorsByRecordRequest) =>
+        this.store.dispatch(actions.getOperatorsByRecord({ request: request }));
 }
