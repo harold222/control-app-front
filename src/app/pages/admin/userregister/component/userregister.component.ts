@@ -19,4 +19,8 @@ export class UserregisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  validateOperator(): void {
+
+  }
+
 }
