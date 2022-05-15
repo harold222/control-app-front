@@ -5,6 +5,7 @@ import { PanelContainer } from './panel/container/panel-container.component';
 import { ExistsessionGuard } from '../../guards/existsession.guard';
 import { RegisterContainer } from './register/container/register-container.component';
 import { UserregisterContainer } from './userregister/container/userregister-container.component';
+import { FaultsContainer } from './faults/container/faults-container.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,9 @@ const routes: Routes = [
             {
                 path: 'register/:idStation/:idOperator',
                 component: UserregisterContainer
+            },{
+                path: 'faults',
+                component: FaultsContainer
             }
         ]
     }

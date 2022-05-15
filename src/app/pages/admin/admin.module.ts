@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/component/register.component';
 import { UserregisterContainer } from './userregister/container/userregister-container.component';
 import { UserregisterComponent } from './userregister/component/userregister.component';
 import { InformationModalsModule } from '../../shared/components/information-modal/information-modal.module';
+import { FaultsContainer } from './faults/container/faults-container.component';
+import { FaultsComponent } from './faults/component/faults.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { InformationModalsModule } from '../../shared/components/information-mod
     RegisterComponent,
     UserregisterContainer,
     UserregisterComponent,
+    FaultsContainer,
+    FaultsComponent,
   ],
   imports: [
     CommonModule,
