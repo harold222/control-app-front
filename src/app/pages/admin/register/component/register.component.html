@@ -8,7 +8,7 @@
                 <div class="d-grid gap-2">
                     <button class="btn btn-outline-danger mb-5" type="button"
                         (click)="finishRegister()">
-                        Finalizar Registro de ingreso
+                        Finalizar Registro De {{ schedule === 'ingress' ? 'Ingreso' : 'Salida' }}
                     </button>
                 </div>
                 <div class="list-group" *ngFor="let user of usersByStation">
@@ -38,24 +38,25 @@
                 <ng-container *ngFor="let station of stations">
                     <div class="col">
                         <div class="card h-100">
-                            <img [src]="station.image" class="card-img-top">
+                            <img [src]="station.station.image" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    {{ station.name }}
+                                    {{ station.station.name }}
                                 </h5>
                                 <p class="card-text">
-                                    {{ station.description }}
+                                    {{ station.station.description }}
                                 </p>
                                 <div class="d-grid gap-2">
                                     <button type="button" class="btn btn-outline-primary"
-                                        (click)="selectStation(station._id)">
-                                        Elegir
+                                        (click)="selectStation(station.station._id, station.schedule)">
+                                        Registrar {{ station.schedule === 'ingress' ?
+                                            'Ingreso' : 'Salida' }}
                                     </button>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">
-                                    {{ station.direction }}
+                                    {{ station.station.direction }}
                                 </small>
                             </div>
                         </div>

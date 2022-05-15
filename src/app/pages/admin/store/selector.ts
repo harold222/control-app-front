@@ -4,6 +4,7 @@ import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
+import { IStationsAndSchedule } from '../../../shared/services/station/model/IStationsAndSchedule';
 
 export const selectAdminState = (state: any) => (
     state.Main
@@ -24,7 +25,7 @@ createSelector(
     selectAdminState,
     (mainState: InterfaceMainState) => mainState.typeOfSchedule);
 
-export const selectStations: MemoizedSelector<InterfaceMainState, InterfaceStations[]> =
+export const selectStations: MemoizedSelector<InterfaceMainState, IStationsAndSchedule[]> =
     createSelector(
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.stations);

@@ -6,6 +6,7 @@ import { InterfaceStations } from '../../store/interfaces/InterfaceStations';
 import { InterfaceUser } from '../../store/interfaces/InterfaceUser';
 import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
 import { IRecord } from '../../../../shared/services/record/model/IRecord';
+import { IStationsAndSchedule } from '../../../../shared/services/station/model/IStationsAndSchedule';
 
 @Component({
   selector: 'app-register-container',
@@ -14,13 +15,12 @@ import { IRecord } from '../../../../shared/services/record/model/IRecord';
 export class RegisterContainer implements OnInit {
 
   public schedule$: Observable<string>;
-  public stations$: Observable<InterfaceStations[]>;
+  public stations$: Observable<IStationsAndSchedule[]>;
   public loading$: Observable<boolean>;
   public usersByStation$: Observable<InterfaceUser[]>;
   public idSelectedStation$: Observable<string>;
   public userInfo$: Observable<InterfaceUserInfo>;
   public record$: Observable<IRecord>;
-  public typeSchedule: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,27 +35,30 @@ export class RegisterContainer implements OnInit {
     this.userInfo$ = this.adminStoreService.selectUserInfo();
     this.record$ = this.adminStoreService.selectCurrentRecord();
 
-    this.adminStoreService.setLoading(true);
+    // this.adminStoreService.setLoading(true);
   }
 
   public ngOnInit(): void {
-    const schedule = this.activatedRoute.snapshot.queryParams['schedule']
-    const allowedSchedules = ['ingress', 'exit']
-    let goToMain = true;
+    // const schedule = this.activatedRoute.snapshot.queryParams['schedule']
+    // const allowedSchedules = ['ingress', 'exit']
+    // let goToMain = true;
 
-    if (schedule) {
-      this.typeSchedule = schedule;
-      if (allowedSchedules.includes(schedule)) goToMain = false 
-    }
+    // if (schedule) {
+      // this.typeSchedule = schedule;
+      // if (allowedSchedules.includes(schedule)) goToMain = false 
+    // }
 
-    if (goToMain) {
-      this.adminStoreService.setLoading(false);
-      this.router.navigateByUrl('/main')
-    } else this.getStations(schedule);
+    // if (goToMain) {
+    //   this.adminStoreService.setLoading(false);
+    //   this.router.navigateByUrl('/main')
+    // } else
+
+    this.adminStoreService.getStations();
+    // this.getStations();
   }
 
-  public getStations(schedule: string): void {
-    this.adminStoreService.setTypeOfSchedule(schedule);
-    this.adminStoreService.getStations();
+  public getStations(): void {
+    // this.adminStoreService.setTypeOfSchedule(schedule);
+    
   }
 }

@@ -11,7 +11,7 @@
   <div class="overview-boxes">
 
     <a class="box"
-      routerLink="register" [queryParams]="{schedule: 'ingress'}"
+      routerLink="register"
       *ngIf="userInfo?.rol === 'SUPERVISOR_ROLE'">
       <div class="right-side">
         <div class="box-topic">
@@ -20,7 +20,7 @@
         <div class="indicator">
             <i class='bx bx-up-arrow-alt'></i>
             <span class="text">
-                De entrada
+                Dependiendo de la estacion
             </span>
         </div>
       </div>

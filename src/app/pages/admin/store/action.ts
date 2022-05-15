@@ -5,6 +5,7 @@ import { InterfaceUser } from './interfaces/InterfaceUser';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
 import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
 import { IUpdateStateRecordAndHistoryRequest } from 'src/app/shared/services/record/model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
+import { IStationsAndSchedule } from '../../../shared/services/station/model/IStationsAndSchedule';
 
 export const SET_LOADING: string = '[MAIN] SET_LOADING';
 
@@ -32,7 +33,7 @@ export const setLoading = createAction(SET_LOADING, props<{ loading: boolean }>(
 export const setUserInfo = createAction(SET_USER_INFO, props<{ user: InterfaceUserInfo }>());
 export const setTypeOfSchedule = createAction(SET_TYPE_OF_SCHEDULE, props<{ schedule: string }>());
 export const getStations = createAction(GET_STATIONS);
-export const setStations = createAction(SET_STATIONS, props<{ stations: InterfaceStations[] }>());
+export const setStations = createAction(SET_STATIONS, props<{ stations: IStationsAndSchedule[] }>());
 export const setUsersByStations = createAction(SET_USERS_BY_STATIONS, props<{ usersByStations: InterfaceUser[] }>());
 export const getUsersByStations = createAction(GET_USERS_BY_STATIONS, props<{ idStation: string }>());
 export const setIdSelectedStation = createAction(SET_SELECTED_STATION, props<{ idSelectedStation: string }>());

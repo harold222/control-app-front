@@ -5,9 +5,10 @@ import { InterfaceUserInfo } from './interfaces/InterfaceUserInfo';
 import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
+import { IStationsAndSchedule } from '../../../shared/services/station/model/IStationsAndSchedule';
 
 export const initialMainState: InterfaceMainState = {
-    loading: true,
+    loading: false,
     user: {
         email: '',
         exp: 0,
@@ -48,7 +49,7 @@ export const Main = createReducer(
         newState.typeOfSchedule = action.schedule;
         return newState;
     }),
-    on(actions.setStations, (state: InterfaceMainState, action: { stations: InterfaceStations[] }) => {
+    on(actions.setStations, (state: InterfaceMainState, action: { stations: IStationsAndSchedule[] }) => {
         const newState: InterfaceMainState = {...state};
         newState.stations = action.stations;
         return newState;

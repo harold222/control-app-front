@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
 import { IRecord } from '../../../../shared/services/record/model/IRecord';
 import { InformationModalService } from '../../../../shared/components/information-modal/service/information-modal.service';
+import { IStationsAndSchedule } from '../../../../shared/services/station/model/IStationsAndSchedule';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   @Input() public schedule: string | null;
 
-  @Input() public stations: InterfaceStations[] | null;
+  @Input() public stations: IStationsAndSchedule[] | null;
 
   @Input() public loading: boolean | null;
 
@@ -48,7 +49,6 @@ export class RegisterComponent implements OnInit {
       }
     } else {
       this.adminStoreService.getUsersByStation(this.idStation);
-
     }
   }
 
@@ -58,18 +58,18 @@ export class RegisterComponent implements OnInit {
     private informationModalService: InformationModalService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
  
-  public selectStation(id: string): void {
+  public selectStation(id: string, schedule: string): void {
     this.adminStoreService.setIdSelectedStation(id);
+    this.adminStoreService.setTypeOfSchedule(schedule);
   }
 
   public selectUser(id: string): void {
     this.router.navigate(
       [`/main/register/${this.idStation}/${id}`],
       {
-        queryParams: { schedule: 'ingress' }
+        queryParams: { schedule: this.schedule }
       }
     );
   }
@@ -80,12 +80,4 @@ export class RegisterComponent implements OnInit {
       type: this.schedule!!
     })
   }
-
-  // deberia existir un boton en el listado de escojer usuarios el cual cambie el estado
-  // del historial completedIngress a true y igualmente para completedExit
-
-  // con eso para un supervisor solo podra tener un registro de horario abierto es decir
-  // si se crea un historial y se recarga la pagina se deberia buscar que exista ese registro
-  // si existe y completedIngress es falso deberia cargar los datos nuevamente
-
 }

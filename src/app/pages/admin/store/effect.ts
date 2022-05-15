@@ -34,17 +34,15 @@ export class AdminEffects {
     public getUsersByStation$ =
         createEffect(() => this.actions$.pipe(
             ofType(actions.getUsersByStations),
-            tap(() => this.adminStoreService.setLoading(true)),
             mergeMap((action: { idStation: string, type: string }) =>
                 this.registrationService.getStationsBySupervisor(action.idStation)
                 .pipe(
                     switchMap((response: ICreateNewRegistration) =>
                         this.recordService.getSpecificRecord(response.history)
                         .pipe(
-                            map((responseTwo: IGetSpecificRecordResponse) => {
-                                this.adminStoreService.setLoading(false);
-                                return actions.setCurrentRecord({ record: responseTwo.record })
-                            })
+                            map((responseTwo: IGetSpecificRecordResponse) => 
+                                actions.setCurrentRecord({ record: responseTwo.record })
+                            )
                         )
                     )
                 )
@@ -77,19 +75,12 @@ export class AdminEffects {
             mergeMap((action: { request: IUpdateStateRecordAndHistoryRequest, type: string }) =>
                 this.recordService.updateStateRecordAndHistory(action.request)),
             map((response: IUpdateStateRecordAndHistoryResponse) => {
-                let message = { title: '', message: '' }
-                
-                if (response.status) {
-                    this.router.navigate(['main']);
-                    message.title = 'Registro';
-                    message.message = 'Se ha actualizado el registro correctamente';
-                } else {
-                    message.title = 'Error';
-                    message.message = 'Se ha generado un error al actualizar el registro, vuelva a intentarlo.';
+                if (response.status) 
+                    window.location.href = '/main'
+                else {
+                    this.informationModalService.setInformation('Error', 'Se ha generado un error al actualizar el registro, vuelva a intentarlo.')
+                    this.informationModalService.setModal(true)
                 }
-
-                this.informationModalService.setInformation(message.title, message.message)
-                this.informationModalService.setModal(true)
             })
         ), { dispatch: false }
     );  
