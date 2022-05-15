@@ -44,3 +44,8 @@ export const selectCurrentRecord: MemoizedSelector<InterfaceMainState, IRecord> 
     createSelector(
         selectAdminState,
         (mainState: InterfaceMainState) => mainState.currentRecord);
+
+export const selectCurrentOperator: MemoizedSelector<InterfaceMainState, InterfaceUser> =
+    createSelector(
+        selectAdminState,
+        (mainState: InterfaceMainState) => mainState.selectedOperator);

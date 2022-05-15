@@ -16,6 +16,8 @@ import { IUpdateStateRecordAndHistoryResponse } from '../../../shared/services/r
 import { Router } from '@angular/router';
 import { InformationModalService } from '../../../shared/components/information-modal/service/information-modal.service';
 import { IGetSpecificRecordResponse } from '../../../shared/services/record/model/getSpecificRecord/IGetSpecificRecordResponse';
+import { UserService } from '../../../shared/services/user/user.service';
+import { IGetUserResponse } from '../../../shared/services/user/getUser/IGetUserResponse';
 
 @Injectable()
 export class AdminEffects {
@@ -85,6 +87,16 @@ export class AdminEffects {
         ), { dispatch: false }
     );  
 
+    public getSelectedOperator$ =
+        createEffect(() => this.actions$.pipe(
+            ofType(actions.getSelectedOperator),
+            mergeMap((action: { id: string, type: string }) =>
+                this.userService.getUser(action.id)),
+            map((response: IGetUserResponse) =>
+                actions.setSelectedOperator({ operator: response.user }))
+        )
+    );
+
     constructor(
         private actions$: Actions,
         private adminStoreService: AdminStoreService,
@@ -93,5 +105,6 @@ export class AdminEffects {
         private recordService: RecordService,
         private router: Router,
         private informationModalService: InformationModalService,
+        private userService: UserService
     ) {}
 }

@@ -29,6 +29,21 @@ export const initialMainState: InterfaceMainState = {
         createdTime: '',
         idStation: '',
         idSupervisor: ''
+    },
+    selectedOperator: {
+        _id: '',
+        birthDate: '',
+        city: '',
+        document: 0,
+        email: '',
+        img: '',
+        lastname: '',
+        name: '',
+        password: '',
+        phone: 0,
+        rol: '',
+        sex: '',
+        state: false
     }
 }
 
@@ -67,6 +82,11 @@ export const Main = createReducer(
     on(actions.setCurrentRecord, (state: InterfaceMainState, action: { record: IRecord }) => {
         const newState: InterfaceMainState = {...state};
         newState.currentRecord = action.record;
+        return newState;
+    }),
+    on(actions.setSelectedOperator, (state: InterfaceMainState, action: { operator: InterfaceUser }) => {
+        const newState: InterfaceMainState = {...state};
+        newState.selectedOperator = action.operator;
         return newState;
     }),
 )

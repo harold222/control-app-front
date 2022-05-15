@@ -29,6 +29,9 @@ export const GET_OPERATORS_BY_RECORD: string = '[REGISTER] GET_OPERATORS_BY_RECO
 
 export const UPDATE_STATE_RECORD_AND_HISTORY: string = '[REGISTER] UPDATE_STATE_RECORD_AND_HISTORY';
 
+export const SET_SELECTED_OPERATOR: string = '[REGISTER] SET_SELECTED_OPERATOR';
+export const GET_SELECTED_OPERATOR: string = '[REGISTER] GET_SELECTED_OPERATOR';
+
 export const setLoading = createAction(SET_LOADING, props<{ loading: boolean }>());
 export const setUserInfo = createAction(SET_USER_INFO, props<{ user: InterfaceUserInfo }>());
 export const setTypeOfSchedule = createAction(SET_TYPE_OF_SCHEDULE, props<{ schedule: string }>());
@@ -41,3 +44,5 @@ export const getRecordBySupervisor = createAction(GET_RECORD_BY_SUPERVISOR, prop
 export const setCurrentRecord = createAction(SET_CURRENT_RECORD, props<{ record: IRecord }>());
 export const getOperatorsByRecord = createAction(GET_OPERATORS_BY_RECORD, props<{ request: IGetOperatorsByRecordRequest }>());
 export const updateStateRecordAndHistory = createAction(UPDATE_STATE_RECORD_AND_HISTORY, props<{ request: IUpdateStateRecordAndHistoryRequest }>());
+export const setSelectedOperator = createAction(SET_SELECTED_OPERATOR, props<{ operator: InterfaceUser }>());
+export const getSelectedOperator = createAction(GET_SELECTED_OPERATOR, props<{ id: string }>());

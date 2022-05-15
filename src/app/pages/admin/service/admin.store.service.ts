@@ -65,4 +65,8 @@ export class AdminStoreService {
 
     public setCurrentRecord = (record: IRecord) => 
         this.store.dispatch(actions.setCurrentRecord({ record }));
+
+    public selectSelectedOperator = () => this.store.select(selectors.selectCurrentOperator);
+
+    public getSelectedOperator = (id: string) => this.store.dispatch(actions.getSelectedOperator({ id }));
 }

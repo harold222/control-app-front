@@ -1,4 +1,9 @@
-<app-userregister>
+<app-userregister
+    [idStation]="idStation"
+    [idOperator]="idOperator"
+    [schedule]="typeOfSchedule"
+    [operator]="operator$|async"
+    [loading]="loading$|async">
 </app-userregister>
 
 <a routerLink="/main/register" [queryParams]="{ schedule: typeOfSchedule }">
