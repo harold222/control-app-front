@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IGetRecordBySupervisorResponse } from './model/IGetRecordBySupervisorResponse';
+import { IUpdateStateRecordAndHistoryResponse } from './model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryResponse';
+import { IUpdateStateRecordAndHistoryRequest } from './model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
+import { IGetSpecificRecordResponse } from './model/getSpecificRecord/IGetSpecificRecordResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +22,15 @@ export class RecordService {
     )
   }
 
+  public updateStateRecordAndHistory(request: IUpdateStateRecordAndHistoryRequest): Observable<IUpdateStateRecordAndHistoryResponse>{
+    return this.http.post<IUpdateStateRecordAndHistoryResponse>(
+      `${this.url}updateState`, request
+    )
+  }
+
+  public getSpecificRecord(id: string): Observable<IGetSpecificRecordResponse> {
+    return this.http.get<IGetSpecificRecordResponse>(
+      `${this.url}getRecord/${id}`
+    )
+  }
 }

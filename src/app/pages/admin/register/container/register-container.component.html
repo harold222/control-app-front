@@ -1,12 +1,12 @@
 <ng-container *ngIf="typeSchedule">
     <ng-container *ngIf="typeSchedule === 'ingress'; else exit">
         <app-register
+            [userInfo]="userInfo$|async"
             [schedule]="schedule$|async"
             [stations]="stations$|async"
             [loading]="loading$|async"
             [usersByStation]="usersByStation$|async"
             [idSelectedStation]="idSelectedStation$|async"
-            [userInfo]="userInfo$|async"
             [record]="record$|async">
         </app-register>
     </ng-container>

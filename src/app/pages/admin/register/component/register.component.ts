@@ -26,6 +26,8 @@ export class RegisterComponent implements OnInit {
 
   public idStation: string;
 
+  public currentRecord: IRecord;
+
   @Input() set idSelectedStation(id: string | null) {
     if (id) {
       this.idStation = id;
@@ -36,12 +38,7 @@ export class RegisterComponent implements OnInit {
   @Input() set record(currentRecord: IRecord | null) {
     if (currentRecord) {
       if (currentRecord._id) {
-
-        this.informationModalService.setInformation(
-          'Registro',
-          'Actualmente para esta estacion cuenta con un registro abierto, termine de registrar los operararios y continue con el cierre.');
-        this.informationModalService.setModal(true);
-
+        this.currentRecord = currentRecord;
         this.adminStoreService.getOperatorsByRecord({
           createdTime: currentRecord.createdTime,
           idStation: this.idStation,
@@ -49,8 +46,10 @@ export class RegisterComponent implements OnInit {
           schedule: this.schedule!!
         })
       }
-    } else
+    } else {
       this.adminStoreService.getUsersByStation(this.idStation);
+
+    }
   }
 
   constructor(
@@ -73,6 +72,13 @@ export class RegisterComponent implements OnInit {
         queryParams: { schedule: 'ingress' }
       }
     );
+  }
+
+  public finishRegister():void {
+    this.adminStoreService.updateStateRecordAndHistory({
+      idRecord: this.currentRecord._id,
+      type: this.schedule!!
+    })
   }
 
   // deberia existir un boton en el listado de escojer usuarios el cual cambie el estado

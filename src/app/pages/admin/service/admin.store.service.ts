@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { InterfaceUserInfo } from '../store/interfaces/InterfaceUserInfo';
 import { InterfaceUser } from '../store/interfaces/InterfaceUser';
 import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
+import { IUpdateStateRecordAndHistoryRequest } from 'src/app/shared/services/record/model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
+import { IRecord } from '../../../shared/services/record/model/IRecord';
 
 @Injectable({
     providedIn: 'root',
@@ -56,5 +58,11 @@ export class AdminStoreService {
     public selectCurrentRecord = () => this.store.select(selectors.selectCurrentRecord);
 
     public getOperatorsByRecord = (request: IGetOperatorsByRecordRequest) =>
-        this.store.dispatch(actions.getOperatorsByRecord({ request: request }));
+        this.store.dispatch(actions.getOperatorsByRecord({ request }));
+
+    public updateStateRecordAndHistory = (request: IUpdateStateRecordAndHistoryRequest) =>
+        this.store.dispatch(actions.updateStateRecordAndHistory({ request }));
+
+    public setCurrentRecord = (record: IRecord) => 
+        this.store.dispatch(actions.setCurrentRecord({ record }));
 }

@@ -4,6 +4,7 @@ import { InterfaceStations } from './interfaces/InterfaceStations';
 import { InterfaceUser } from './interfaces/InterfaceUser';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
 import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
+import { IUpdateStateRecordAndHistoryRequest } from 'src/app/shared/services/record/model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
 
 export const SET_LOADING: string = '[MAIN] SET_LOADING';
 
@@ -25,6 +26,8 @@ export const SET_CURRENT_RECORD: string = '[REGISTER] SET_CURRENT_RECORD';
 
 export const GET_OPERATORS_BY_RECORD: string = '[REGISTER] GET_OPERATORS_BY_RECORD';
 
+export const UPDATE_STATE_RECORD_AND_HISTORY: string = '[REGISTER] UPDATE_STATE_RECORD_AND_HISTORY';
+
 export const setLoading = createAction(SET_LOADING, props<{ loading: boolean }>());
 export const setUserInfo = createAction(SET_USER_INFO, props<{ user: InterfaceUserInfo }>());
 export const setTypeOfSchedule = createAction(SET_TYPE_OF_SCHEDULE, props<{ schedule: string }>());
@@ -36,3 +39,4 @@ export const setIdSelectedStation = createAction(SET_SELECTED_STATION, props<{ i
 export const getRecordBySupervisor = createAction(GET_RECORD_BY_SUPERVISOR, props<{ idSupervisor: string, idStation: string }>());
 export const setCurrentRecord = createAction(SET_CURRENT_RECORD, props<{ record: IRecord }>());
 export const getOperatorsByRecord = createAction(GET_OPERATORS_BY_RECORD, props<{ request: IGetOperatorsByRecordRequest }>());
+export const updateStateRecordAndHistory = createAction(UPDATE_STATE_RECORD_AND_HISTORY, props<{ request: IUpdateStateRecordAndHistoryRequest }>());

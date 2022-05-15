@@ -5,6 +5,12 @@
         </h3> <hr>
         <div class="container">
             <div class="row">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-danger mb-5" type="button"
+                        (click)="finishRegister()">
+                        Finalizar Registro de ingreso
+                    </button>
+                </div>
                 <div class="list-group" *ngFor="let user of usersByStation">
                     <button type="button" (click)="selectUser(user._id)"
                         class="list-group-item list-group-item-action list-users-text">
