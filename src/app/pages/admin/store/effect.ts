@@ -18,6 +18,8 @@ import { InformationModalService } from '../../../shared/components/information-
 import { IGetSpecificRecordResponse } from '../../../shared/services/record/model/getSpecificRecord/IGetSpecificRecordResponse';
 import { UserService } from '../../../shared/services/user/user.service';
 import { IGetUserResponse } from '../../../shared/services/user/getUser/IGetUserResponse';
+import { IUpdateOpeningTimeResponse } from '../../../shared/services/registration/model/updateOpeningTime/IUpdateOpeningTimeResponse';
+import { IUpdateOpeningTimeRequest } from '../../../shared/services/registration/model/updateOpeningTime/IUpdateOpeningTimeRequest';
 
 @Injectable()
 export class AdminEffects {
@@ -42,7 +44,7 @@ export class AdminEffects {
                     switchMap((response: ICreateNewRegistration) =>
                         this.recordService.getSpecificRecord(response.history)
                         .pipe(
-                            map((responseTwo: IGetSpecificRecordResponse) => 
+                            map((responseTwo: IGetSpecificRecordResponse) =>
                                 actions.setCurrentRecord({ record: responseTwo.record })
                             )
                         )
@@ -95,6 +97,79 @@ export class AdminEffects {
             map((response: IGetUserResponse) =>
                 actions.setSelectedOperator({ operator: response.user }))
         )
+    );
+
+    public updateOpeningTime$ =
+        createEffect(() => this.actions$.pipe(
+            ofType(actions.updateOpeningTime),
+            mergeMap((action: { request: IUpdateOpeningTimeRequest, type: string }) =>
+                this.registrationService.updateOpeningTime(action.request)),
+            map((response: IUpdateOpeningTimeResponse) => {
+                if (response.status) {
+                    if (response.updateRecord) {
+                        this.router.navigate(['/main'])
+
+                        this.adminStoreService.setIdSelectedStation('')
+                        this.adminStoreService.setCurrentRecord({
+                            _id: '',
+                            completedExit: false,
+                            completedIngress: true,
+                            createdTime: '',
+                            idStation: '',
+                            idSupervisor: ''
+                        });
+                        this.adminStoreService.setTypeOfSchedule('')
+                        this.adminStoreService.setUsersByStations([])
+                        this.adminStoreService.setStations([])
+
+
+                        this.informationModalService.setInformation(
+                            'Registro Ingreso cerrado',
+                            'Se han registrado todos los operarios correctamente.'
+                        )
+                        this.informationModalService.setModal(true)
+                    } else {
+                        this.router.navigate(['/main/register'])
+                    }
+                }
+            })
+        ), { dispatch: false }
+    );
+
+    public updateClosingTime$ =
+        createEffect(() => this.actions$.pipe(
+            ofType(actions.updateClosingTime),
+            mergeMap((action: { request: IUpdateOpeningTimeRequest, type: string }) =>
+                this.registrationService.updateClosingTime(action.request)),
+            map((response: IUpdateOpeningTimeResponse) => {
+                if (response.status) {
+                    if (response.updateRecord) {
+                        this.router.navigate(['/main'])
+
+                        this.adminStoreService.setIdSelectedStation('')
+                        this.adminStoreService.setCurrentRecord({
+                            _id: '',
+                            completedExit: false,
+                            completedIngress: true,
+                            createdTime: '',
+                            idStation: '',
+                            idSupervisor: ''
+                        });
+                        this.adminStoreService.setTypeOfSchedule('')
+                        this.adminStoreService.setUsersByStations([])
+                        this.adminStoreService.setStations([])
+
+                        this.informationModalService.setInformation(
+                            'Registro Salida cerrado',
+                            'Se han registrado todos los operarios correctamente.'
+                        )
+                        this.informationModalService.setModal(true)
+                    } else {
+                        this.router.navigate(['/main/register'])
+                    }
+                }
+            })
+        ), { dispatch: false }
     );
 
     constructor(

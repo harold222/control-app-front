@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb" class="main-breadcrumb container">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a routerLink="/main/register" [queryParams]="{ schedule: typeOfSchedule }">
+            <a routerLink="/main/register">
                 Volver
             </a>
         </li>
@@ -13,5 +13,6 @@
     [idOperator]="idOperator"
     [schedule]="typeOfSchedule"
     [operator]="operator$|async"
-    [loading]="loading$|async">
+    [loading]="loading$|async"
+    [userInfo]="userInfo$|async">
 </app-userregister>

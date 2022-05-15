@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { ICreateNewRegistration } from './model/CreateNewRegistration/ICreateNewRegistration';
 import { IGetOperatorsByRecordResponse } from './model/GetOperatorsByRecord/IGetOperatorsByRecordResponse';
 import { IGetOperatorsByRecordRequest } from './model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
+import { IUpdateOpeningTimeRequest } from './model/updateOpeningTime/IUpdateOpeningTimeRequest';
+import { IUpdateOpeningTimeResponse } from './model/updateOpeningTime/IUpdateOpeningTimeResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,18 @@ export class RegistrationService {
   public getOperatorsByRecord(request: IGetOperatorsByRecordRequest): Observable<IGetOperatorsByRecordResponse> {
     return this.http.post<IGetOperatorsByRecordResponse>(
       `${this.url}getOperatorsByRecord`, request
+    )
+  }
+
+  public updateOpeningTime(request: IUpdateOpeningTimeRequest): Observable<IUpdateOpeningTimeResponse>{
+    return this.http.post<IUpdateOpeningTimeResponse>(
+      `${this.url}opening`, request
+    )
+  }
+
+  public updateClosingTime(request: IUpdateOpeningTimeRequest): Observable<IUpdateOpeningTimeResponse>{
+    return this.http.post<IUpdateOpeningTimeResponse>(
+      `${this.url}closing`, request
     )
   }
 

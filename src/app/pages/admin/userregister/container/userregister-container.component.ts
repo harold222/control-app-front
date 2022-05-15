@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AdminStoreService } from '../../service/admin.store.service';
 import { Observable } from 'rxjs';
 import { InterfaceUser } from '../../store/interfaces/InterfaceUser';
+import { InterfaceUserInfo } from '../../store/interfaces/InterfaceUserInfo';
 
 @Component({
   selector: 'app-userregister-container',
@@ -15,6 +16,7 @@ export class UserregisterContainer implements OnInit {
   public idOperator: string;
   public operator$: Observable<InterfaceUser>;
   public loading$: Observable<boolean>;
+  public userInfo$: Observable<InterfaceUserInfo>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +28,7 @@ export class UserregisterContainer implements OnInit {
 
     this.operator$ = this.adminStoreService.selectSelectedOperator();
     this.loading$ = this.adminStoreService.selectLoading();
+    this.userInfo$ = this.adminStoreService.selectUserInfo();
   }
 
   ngOnInit(): void {

@@ -9,6 +9,8 @@ import { InterfaceUser } from '../store/interfaces/InterfaceUser';
 import { IGetOperatorsByRecordRequest } from '../../../shared/services/registration/model/GetOperatorsByRecord/IGetOperatorsByRecordRequest';
 import { IUpdateStateRecordAndHistoryRequest } from 'src/app/shared/services/record/model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
 import { IRecord } from '../../../shared/services/record/model/IRecord';
+import { IUpdateOpeningTimeRequest } from '../../../shared/services/registration/model/updateOpeningTime/IUpdateOpeningTimeRequest';
+import { IStationsAndSchedule } from '../../../shared/services/station/model/IStationsAndSchedule';
 
 @Injectable({
     providedIn: 'root',
@@ -69,4 +71,13 @@ export class AdminStoreService {
     public selectSelectedOperator = () => this.store.select(selectors.selectCurrentOperator);
 
     public getSelectedOperator = (id: string) => this.store.dispatch(actions.getSelectedOperator({ id }));
+
+    public updateOpeningTime = (request: IUpdateOpeningTimeRequest) =>
+        this.store.dispatch(actions.updateOpeningTime({ request }));
+
+    public updateClosingTime = (request: IUpdateOpeningTimeRequest) =>
+        this.store.dispatch(actions.updateClosingTime({ request }));
+
+    public setStations = (stations: IStationsAndSchedule[]) =>
+        this.store.dispatch(actions.setStations({ stations }));
 }
