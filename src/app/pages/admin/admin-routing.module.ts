@@ -5,7 +5,7 @@ import { PanelContainer } from './panel/container/panel-container.component';
 import { ExistsessionGuard } from '../../guards/existsession.guard';
 import { RegisterContainer } from './register/container/register-container.component';
 import { UserregisterContainer } from './userregister/container/userregister-container.component';
-import { FaultsContainer } from './faults/container/faults-container.component';
+import { FaultsModule } from './faults/faults.module';
 
 const routes: Routes = [
     {
@@ -24,9 +24,11 @@ const routes: Routes = [
             {
                 path: 'register/:idStation/:idOperator',
                 component: UserregisterContainer
-            },{
+            },
+            {
                 path: 'faults',
-                component: FaultsContainer
+                loadChildren: () => import('./faults/faults.module')
+                    .then((p: { FaultsModule: FaultsModule }) => p.FaultsModule).catch(),
             }
         ]
     }
