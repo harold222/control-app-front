@@ -6,6 +6,8 @@ import { IGetRecordBySupervisorResponse } from './model/IGetRecordBySupervisorRe
 import { IUpdateStateRecordAndHistoryResponse } from './model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryResponse';
 import { IUpdateStateRecordAndHistoryRequest } from './model/updateStateRecordAndHistory/IUpdateStateRecordAndHistoryRequest';
 import { IGetSpecificRecordResponse } from './model/getSpecificRecord/IGetSpecificRecordResponse';
+import { IGetFaultsByRecordRequest } from './model/getFaultsByRecord/IGetFaultsByRecordRequest';
+import { IGetFaultsByRecordResponse } from './model/getFaultsByRecord/IGetFaultsByRecordResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,12 @@ export class RecordService {
   public getSpecificRecord(id: string): Observable<IGetSpecificRecordResponse> {
     return this.http.get<IGetSpecificRecordResponse>(
       `${this.url}getRecord/${id}`
+    )
+  }
+
+  public getFaultsByRecord(request: IGetFaultsByRecordRequest): Observable<IGetFaultsByRecordResponse> {
+    return this.http.post<IGetFaultsByRecordResponse>(
+      `${this.url}getFaultsByRecord`, request
     )
   }
 }

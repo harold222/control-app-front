@@ -1,3 +1,76 @@
 <ng-container *ngIf="!loading">
-
+    <h3 class="text-center">
+        Usuarios por estacion
+    </h3> <hr>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <ng-container *ngFor="let user of usersByStation">
+                <div class="col">
+                  <div class="card border-success h-100">
+                    <img [src]="user.img" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-capitalize text-success">
+                            {{ user.name }} {{ user.lastname }}
+                            </h5>
+                        <p class="card-text bg-transparent border-success">
+                            Email: {{ user.email }}
+                        </p>
+                        <p class="card-text bg-transparent border-success">
+                            Telefono: {{ user.phone }}
+                        </p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-success" type="button" (click)="openModal(user._id, template)">
+                                Ver fallas
+                            </button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </ng-container>
+
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+          Faltas Obtenidas
+      </h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <ng-container *ngIf="recordsByUser?.length; else loadRecords">
+            <ul class="list-group" *ngFor="let record of recordsByUser">
+                <ng-container *ngIf="!record.openingTime || !record.closingTime">
+                    <li class="list-group-item">
+                        <p>
+                            <strong>Fecha: </strong> {{ record.createdTime | date }}
+                        </p>
+                        <span class="badge rounded-pill text-danger" *ngIf="!record.openingTime">
+                            No se realizo ingreso
+                        </span>
+                        <span class="badge rounded-pill text-danger" *ngIf="!record.closingTime">
+                            No se realizo salida
+                        </span>
+                    </li>
+                </ng-container>
+            </ul>
+        </ng-container>
+        <ng-template #loadRecords>
+            <ng-container *ngIf="userWithoutRecord">
+                <h5 class="text-center text-success">
+                    El usuario no posee fallas
+                </h5>
+            </ng-container>
+            <ng-container *ngIf="!userWithoutRecord">
+                <h5 class="text-center text-danger">
+                    Cargando fallas...
+                </h5>
+            </ng-container>
+        </ng-template>
+    </div>
+</ng-template>
