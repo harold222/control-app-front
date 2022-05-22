@@ -43,7 +43,16 @@ export class FaultsEffects {
             map((response: IGetFaultsByRecordResponse) => {
                 if (!response.registrations?.length && response.status)
                     this.faultsStoreService.setUserWithoutRecords(true);
-                return actions.setRecordsByUser({ registrations: response.registrations })
+
+                if (response.registrations?.length) {
+                    const result = response.registrations.filter(registration => !registration.closingTime || !registration.createdTime)
+                    if (!result.length) {
+                        this.faultsStoreService.setUserWithoutRecords(true);
+                    } else {
+                        return actions.setRecordsByUser({ registrations: response.registrations })        
+                    }
+                }
+                return actions.setRecordsByUser({ registrations: [] })
             })
         )
     );
